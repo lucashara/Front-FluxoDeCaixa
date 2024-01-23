@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/style.css">
+    <title>Fluxo de Caixa</title>
+</head>
+<body>
+  <div class="container">
+    <h1>Fluxo de Caixa</h1>
+    <div class="filtros">
+        <label for="dataInicial">Data Inicial:</label>
+        <input type="date" id="dataInicial" />
+        <label for="dataFinal">Data Final:</label>
+        <input type="date" id="dataFinal" />
+        <button id="pesquisar">Pesquisar</button>
+    </div>
+        <div class="kpi">
+            <h2>KPIs</h2>
+            <!-- KPIs do Grupo BRF1 -->
+            <div class="kpi-container" id="kpi-grupo-brf1">
+                <h3>Grupo BRF1</h3>
+                <div class="kpi-item">Receber Pago: <span id="receberPagoGrupo"></span></div>
+                <div class="kpi-item">Receber Título: <span id="receberTituloGrupo"></span></div>
+                <div class="kpi-item">Pagar Pago: <span id="pagarPagoGrupo"></span></div>
+                <div class="kpi-item">Pagar Título: <span id="pagarTituloGrupo"></span></div>
+            </div>
+            <!-- KPIs da Filial 1 -->
+            <div class="kpi-container" id="kpi-filial1">
+                <h3>Farmaum PB</h3>
+                <div class="kpi-item">Receber Pago: <span id="receberPagoFilial1"></span></div>
+                <div class="kpi-item">Receber Título: <span id="receberTituloFilial1"></span></div>
+                <div class="kpi-item">Pagar Pago: <span id="pagarPagoFilial1"></span></div>
+                <div class="kpi-item">Pagar Título: <span id="pagarTituloFilial1"></span></div>
+            </div>
+            <!-- KPIs da Filial 2 -->
+            <div class="kpi-container" id="kpi-filial2">
+                <h3>Farmaum RN</h3>
+                <div class="kpi-item">Receber Pago: <span id="receberPagoFilial2"></span></div>
+                <div class="kpi-item">Receber Título: <span id="receberTituloFilial2"></span></div>
+                <div class="kpi-item">Pagar Pago: <span id="pagarPagoFilial2"></span></div>
+                <div class="kpi-item">Pagar Título: <span id="pagarTituloFilial2"></span></div>
+            </div>
+            <!-- KPIs da Filial 3 -->
+            <div class="kpi-container" id="kpi-filial3">
+                <h3>Brasil</h3>
+                <div class="kpi-item">Receber Pago: <span id="receberPagoFilial3"></span></div>
+                <div class="kpi-item">Receber Título: <span id="receberTituloFilial3"></span></div>
+                <div class="kpi-item">Pagar Pago: <span id="pagarPagoFilial3"></span></div>
+                <div class="kpi-item">Pagar Título: <span id="pagarTituloFilial3"></span></div>
+            </div>
+        </div>
+    </div>
+    <script type="module" src="/main.js"></script>
+</body>
+</html>
