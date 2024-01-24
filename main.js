@@ -268,7 +268,7 @@ let updateTimer; // Timer para atualização automática
   // Inicia o temporizador para atualização automática
   function iniciarTemporizador() {
     pararTemporizador();
-    updateTimer = setInterval(atualizarTodosKPIs, 2000);
+    updateTimer = setInterval(atualizarTodosKPIs, 60000);
   }
 
   // Para o temporizador de atualização automática
