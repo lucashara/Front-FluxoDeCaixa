@@ -8,28 +8,25 @@ body {
   overflow-x: hidden; /* Evita rolagem horizontal */
 }
 
+/* Container Principal */
 .container {
   display: flex;
-  flex-wrap: nowrap; /* Não permite quebra de linha nos cartões */
-  align-items: flex-start;
-  justify-content: space-around; /* Espaçamento igual entre os cartões */
-  height: 100vh; /* Altura total da tela */
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  min-height: 100vh;
 }
 
 h1 {
-  width: 100%;
-  text-align: center;
   margin: 20px 0;
 }
 
 /* Estilização dos Filtros */
 .filtros {
-  width: 100%;
   display: flex;
   justify-content: center;
-  padding: 10px 0;
-  margin-bottom: 10px;
-  flex-wrap: wrap; /* Permite que os filtros se ajustem em telas menores */
+  flex-wrap: wrap;
+  margin-bottom: 20px;
 }
 
 .filtros label, .filtros input, .filtros button {
@@ -49,24 +46,39 @@ h1 {
   background-color: #0056b3;
 }
 
+/* Área do Gráfico */
+.grafico {
+  width: 80%; /* Largura principal para o gráfico */
+  margin: 20px 0;
+}
+
+#graficoFluxoDeCaixa {
+  width: 100%;
+  height: 400px; /* Altura fixa para melhor visualização */
+}
+
 /* Estilização dos Cartões */
+.card-container {
+  display: flex;
+  justify-content: space-evenly; /* Espaçamento uniforme */
+  width: 100%; /* Largura total para alinhamento */
+  margin-bottom: 20px; /* Espaço abaixo dos cartões */
+  flex-wrap: wrap; /* Permite que os cartões se empilhem em telas menores */
+}
+
 .kpi, .saldo-banco {
-  width: calc(50% - 20px); /* Metade da largura da tela menos a margem */
-  max-height: 80vh; /* Altura máxima */
-  overflow-y: auto; /* Barra de rolagem se necessário */
+  flex: 1 1 45%; /* Ajusta a base e o crescimento para alinhamento lado a lado */
+  max-height: 300px;
+  overflow-y: auto;
   background-color: #fff;
-  margin: 10px; /* Margem em torno dos cartões */
+  margin: 10px;
   padding: 15px;
   border-radius: 5px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-  font-size: 0.7em; /* Tamanho menor de fonte */
+  font-size: 0.9em;
 }
 
 .kpi h2, .saldo-banco h2 {
-  margin-bottom: 15px;
-}
-
-.kpi-container, .saldo-banco-container {
   margin-bottom: 15px;
 }
 
@@ -76,17 +88,16 @@ h1 {
 
 /* Responsividade */
 @media screen and (max-width: 768px) {
-  .container {
-    flex-direction: column;
+  .grafico, .card-container {
+    width: 100%;
   }
 
   .kpi, .saldo-banco {
-    width: 100%; /* Cartões ocupam a largura total em telas menores */
-    max-height: none; /* Remove a altura máxima em telas menores */
+    flex-basis: 100%; /* Cartões ocupam a largura total em telas menores */
+    max-height: none; /* Remove limitação de altura em telas menores */
   }
 
-  .filtros label, .filtros input, .filtros button {
-    width: 100%; /* Filtros ocupam a largura total em telas menores */
-    margin: 5px 0; /* Ajusta a margem para melhor visualização */
+  #graficoFluxoDeCaixa {
+    height: 250px;
   }
 }
