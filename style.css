@@ -5,13 +5,14 @@ body {
   color: #333;
   margin: 0;
   padding: 0;
+  overflow-x: hidden; /* Evita rolagem horizontal */
 }
 
 .container {
   display: flex;
-  flex-wrap: wrap;
+  flex-wrap: nowrap; /* Não permite quebra de linha nos cartões */
   align-items: flex-start;
-  justify-content: flex-start;
+  justify-content: space-around; /* Espaçamento igual entre os cartões */
   height: 100vh; /* Altura total da tela */
 }
 
@@ -28,10 +29,11 @@ h1 {
   justify-content: center;
   padding: 10px 0;
   margin-bottom: 10px;
+  flex-wrap: wrap; /* Permite que os filtros se ajustem em telas menores */
 }
 
 .filtros label, .filtros input, .filtros button {
-  margin: 0 10px;
+  margin: 5px;
   padding: 8px;
 }
 
@@ -49,15 +51,15 @@ h1 {
 
 /* Estilização dos Cartões */
 .kpi, .saldo-banco {
-  width: 50%; /* Metade da largura da tela */
+  width: calc(50% - 20px); /* Metade da largura da tela menos a margem */
   max-height: 80vh; /* Altura máxima */
   overflow-y: auto; /* Barra de rolagem se necessário */
   background-color: #fff;
-  margin: 10px 5px;
+  margin: 10px; /* Margem em torno dos cartões */
   padding: 15px;
   border-radius: 5px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-  font-size: 0.9em; /* Tamanho menor de fonte */
+  font-size: 0.7em; /* Tamanho menor de fonte */
 }
 
 .kpi h2, .saldo-banco h2 {
@@ -75,10 +77,16 @@ h1 {
 /* Responsividade */
 @media screen and (max-width: 768px) {
   .container {
-      flex-direction: column;
+    flex-direction: column;
   }
 
   .kpi, .saldo-banco {
-      width: 100%;
+    width: 100%; /* Cartões ocupam a largura total em telas menores */
+    max-height: none; /* Remove a altura máxima em telas menores */
+  }
+
+  .filtros label, .filtros input, .filtros button {
+    width: 100%; /* Filtros ocupam a largura total em telas menores */
+    margin: 5px 0; /* Ajusta a margem para melhor visualização */
   }
 }
