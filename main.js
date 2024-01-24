@@ -56,6 +56,22 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   }
 
+  function definirCorDoValor(valorFormatado, elemento) {
+    // Removendo o símbolo de moeda e convertendo para número
+    const valor = Number(valorFormatado.replace(/R\$\s?|(\.)/g, '').replace(',', '.'));
+  
+    // Definindo a cor baseada no valor
+    if (valor > 0) {
+      elemento.style.color = 'green';
+    } else if (valor < 0) {
+      elemento.style.color = 'red';
+    } else {
+      elemento.style.color = 'black';
+    }
+  }
+  
+
+
   // Atualiza os KPIs de Contas a Receber/Pagar
   async function atualizarKPIsContas() {
     const apiUrl = `https://192.168.121.145:4445/fluxo_de_caixa?data_inicial=${formatarData(dataInicialInput.value)}&data_final=${formatarData(dataFinalInput.value)}`;
@@ -65,35 +81,50 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // Processa e exibe os KPIs de Contas a Receber/Pagar
   function processarKPIsContas(dados) {
-      let totalReceberPagoGrupo = 0;
-      let totalReceberTituloGrupo = 0;
-      let totalPagarPagoGrupo = 0;
-      let totalPagarTituloGrupo = 0;
-  
-      dados.forEach(dado => {
-      const { CODFILIAL, RECEBER_VALORPAGO, RECEBER_VALORTITULO, PAGAR_VALORPAGO, PAGAR_VALORTITULO } = dado;
-  
-      // Soma os totais para o Grupo BRF1
-      totalReceberPagoGrupo += RECEBER_VALORPAGO;
-      totalReceberTituloGrupo += RECEBER_VALORTITULO;
-      totalPagarPagoGrupo += PAGAR_VALORPAGO;
-      totalPagarTituloGrupo += PAGAR_VALORTITULO;
-  
-      // Atualiza os valores para cada filial
-      if (kpis.hasOwnProperty(CODFILIAL)) {
-          kpis[CODFILIAL].receberPago.textContent = formatarMoeda(RECEBER_VALORPAGO);
-          kpis[CODFILIAL].receberTitulo.textContent = formatarMoeda(RECEBER_VALORTITULO);
-          kpis[CODFILIAL].pagarPago.textContent = formatarMoeda(PAGAR_VALORPAGO);
-          kpis[CODFILIAL].pagarTitulo.textContent = formatarMoeda(PAGAR_VALORTITULO);
-      }
-      });
-  
-      // Atualiza os totais para o Grupo BRF1
-      kpis.grupoBRF1.receberPago.textContent = formatarMoeda(totalReceberPagoGrupo);
-      kpis.grupoBRF1.receberTitulo.textContent = formatarMoeda(totalReceberTituloGrupo);
-      kpis.grupoBRF1.pagarPago.textContent = formatarMoeda(totalPagarPagoGrupo);
-      kpis.grupoBRF1.pagarTitulo.textContent = formatarMoeda(totalPagarTituloGrupo);
-  }
+    let totalReceberPagoGrupo = 0;
+    let totalReceberTituloGrupo = 0;
+    let totalPagarPagoGrupo = 0;
+    let totalPagarTituloGrupo = 0;
+
+    dados.forEach(dado => {
+        const { CODFILIAL, RECEBER_VALORPAGO, RECEBER_VALORTITULO, PAGAR_VALORPAGO, PAGAR_VALORTITULO } = dado;
+
+        // Soma os totais para o Grupo BRF1
+        totalReceberPagoGrupo += RECEBER_VALORPAGO;
+        totalReceberTituloGrupo += RECEBER_VALORTITULO;
+        totalPagarPagoGrupo += PAGAR_VALORPAGO;
+        totalPagarTituloGrupo += PAGAR_VALORTITULO;
+
+        // Atualiza os valores e cores para cada filial
+        if (kpis.hasOwnProperty(CODFILIAL)) {
+            kpis[CODFILIAL].receberPago.textContent = formatarMoeda(RECEBER_VALORPAGO);
+            definirCorDoValor(kpis[CODFILIAL].receberPago.textContent, kpis[CODFILIAL].receberPago);
+
+            kpis[CODFILIAL].receberTitulo.textContent = formatarMoeda(RECEBER_VALORTITULO);
+            definirCorDoValor(kpis[CODFILIAL].receberTitulo.textContent, kpis[CODFILIAL].receberTitulo);
+
+            kpis[CODFILIAL].pagarPago.textContent = formatarMoeda(PAGAR_VALORPAGO);
+            definirCorDoValor(kpis[CODFILIAL].pagarPago.textContent, kpis[CODFILIAL].pagarPago);
+
+            kpis[CODFILIAL].pagarTitulo.textContent = formatarMoeda(PAGAR_VALORTITULO);
+            definirCorDoValor(kpis[CODFILIAL].pagarTitulo.textContent, kpis[CODFILIAL].pagarTitulo);
+        }
+    });
+
+    // Atualiza e define as cores dos totais para o Grupo BRF1
+    kpis.grupoBRF1.receberPago.textContent = formatarMoeda(totalReceberPagoGrupo);
+    definirCorDoValor(kpis.grupoBRF1.receberPago.textContent, kpis.grupoBRF1.receberPago);
+
+    kpis.grupoBRF1.receberTitulo.textContent = formatarMoeda(totalReceberTituloGrupo);
+    definirCorDoValor(kpis.grupoBRF1.receberTitulo.textContent, kpis.grupoBRF1.receberTitulo);
+
+    kpis.grupoBRF1.pagarPago.textContent = formatarMoeda(totalPagarPagoGrupo);
+    definirCorDoValor(kpis.grupoBRF1.pagarPago.textContent, kpis.grupoBRF1.pagarPago);
+
+    kpis.grupoBRF1.pagarTitulo.textContent = formatarMoeda(totalPagarTituloGrupo);
+    definirCorDoValor(kpis.grupoBRF1.pagarTitulo.textContent, kpis.grupoBRF1.pagarTitulo);
+}
+
 
   // Atualiza os saldos dos bancos
   async function atualizarSaldosBanco() {
@@ -103,74 +134,46 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // Processa e exibe os saldos dos bancos
   function processarSaldosBanco(dados) {
-      let saldoTotalGrupoBRF1 = 0;
-      const saldosPorFilial = {
-      '1': [],
-      '2': [],
-      '3': [],
-      };
-  
-      dados.forEach(dado => {
-      const { CODFILIAL, BANCO, VALOR } = dado;
-      saldoTotalGrupoBRF1 += VALOR;
-  
-      if (saldosPorFilial.hasOwnProperty(CODFILIAL)) {
-          saldosPorFilial[CODFILIAL].push(`${BANCO}: ${formatarMoeda(VALOR)}`);
-      }
-      });
-  
-      // Atualiza a interface para cada filial e o total do Grupo BRF1
-      Object.keys(saldosPorFilial).forEach(filialId => {
-      const container = document.getElementById(`saldoBancoFilial${filialId}Detalhes`);
-      container.innerHTML = saldosPorFilial[filialId].join("<br>");
-      });
-  
-      // Atualiza total do Grupo BRF1
-      const containerGrupoBRF1 = document.getElementById('saldoBancoGrupoDetalhes');
-      containerGrupoBRF1.innerHTML = `Total: ${formatarMoeda(saldoTotalGrupoBRF1)}`;
+    let saldoTotalGrupoBRF1 = 0;
+    const saldosPorFilial = {
+        '1': [],
+        '2': [],
+        '3': [],
+    };
+
+    dados.forEach(dado => {
+        const { CODFILIAL, BANCO, VALOR } = dado;
+        saldoTotalGrupoBRF1 += VALOR;
+
+        if (saldosPorFilial.hasOwnProperty(CODFILIAL)) {
+            const valorFormatado = formatarMoeda(VALOR);
+            const elementoSaldo = document.createElement('span');
+            const nomeBanco = document.createTextNode(`${BANCO}: `);
+            const valorElemento = document.createElement('span');
+            valorElemento.innerHTML = valorFormatado;
+            definirCorDoValor(valorFormatado, valorElemento);
+
+            elementoSaldo.appendChild(nomeBanco);
+            elementoSaldo.appendChild(valorElemento);
+            saldosPorFilial[CODFILIAL].push(elementoSaldo.outerHTML);
+        }
+    });
+
+    // Atualiza a interface para cada filial
+    Object.keys(saldosPorFilial).forEach(filialId => {
+        const container = document.getElementById(`saldoBancoFilial${filialId}Detalhes`);
+        container.innerHTML = saldosPorFilial[filialId].join("<br>");
+    });
+
+    // Atualiza total do Grupo BRF1
+    const containerGrupoBRF1 = document.getElementById('saldoBancoGrupoDetalhes');
+    const valorTotalFormatado = formatarMoeda(saldoTotalGrupoBRF1);
+    const totalElemento = document.createElement('span');
+    totalElemento.innerHTML = `Total: ${valorTotalFormatado}`;
+    definirCorDoValor(valorTotalFormatado, totalElemento);
+    containerGrupoBRF1.innerHTML = '';
+    containerGrupoBRF1.appendChild(totalElemento);
   }
-
-  // Calcula KPIs com base nos dados filtrados
-  function calcularKPIs(dadosFiltrados) {
-      const receberPagoTotal = dadosFiltrados.reduce(
-        (total, item) => total + item.RECEBER_VALORPAGO,
-        0
-      );
-      const receberTituloTotal = dadosFiltrados.reduce(
-        (total, item) => total + item.RECEBER_VALORTITULO,
-        0
-      );
-      const pagarPagoTotal = dadosFiltrados.reduce(
-        (total, item) => total + item.PAGAR_VALORPAGO,
-        0
-      );
-      const pagarTituloTotal = dadosFiltrados.reduce(
-        (total, item) => total + item.PAGAR_VALORTITULO,
-        0
-      );
-  
-      return {
-        receberPagoTotal,
-        receberTituloTotal,
-        pagarPagoTotal,
-        pagarTituloTotal,
-      };
-    }
-
-  // Atualiza os valores na interface para cada filial
-  function atualizarValoresKPIs(filialId, kpiValues) {
-      const kpiElements = kpis[filialId];
-      kpiElements.receberPago.textContent = formatarMoeda(
-        kpiValues.receberPagoTotal
-      );
-      kpiElements.receberTitulo.textContent = formatarMoeda(
-        kpiValues.receberTituloTotal
-      );
-      kpiElements.pagarPago.textContent = formatarMoeda(kpiValues.pagarPagoTotal);
-      kpiElements.pagarTitulo.textContent = formatarMoeda(
-        kpiValues.pagarTituloTotal
-      );
-    }
 
   // Inicia o temporizador para atualização automática
   function iniciarTemporizador() {
