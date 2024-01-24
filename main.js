@@ -91,7 +91,7 @@ let updateTimer; // Timer para atualização automática
 
   // Função para buscar dados para o gráfico
   async function buscarDadosFluxoDeCaixaDia() {
-    const apiUrl = `https://192.168.121.145:4445/fluxo_de_caixa_dia?data_inicial=${formatarData(dataInicialInput.value)}&data_final=${formatarData(dataFinalInput.value)}`;
+    const apiUrl = `https://sga.grupobrf1.com:4445/fluxo_de_caixa_dia?data_inicial=${formatarData(dataInicialInput.value)}&data_final=${formatarData(dataFinalInput.value)}`;
     try {
         const dados = await buscarDadosAPI(apiUrl);
         criarGraficoFluxoDeCaixa(dados);
@@ -103,7 +103,7 @@ let updateTimer; // Timer para atualização automática
   // Funções de atualização e processamento de dados
   // Atualiza KPIs de Contas a Receber/Pagar
   async function atualizarKPIsContas() {
-    const apiUrl = `https://192.168.121.145:4445/fluxo_de_caixa?data_inicial=${formatarData(dataInicialInput.value)}&data_final=${formatarData(dataFinalInput.value)}`;
+    const apiUrl = `https://sga.grupobrf1.com:4445/fluxo_de_caixa?data_inicial=${formatarData(dataInicialInput.value)}&data_final=${formatarData(dataFinalInput.value)}`;
     const dados = await buscarDadosAPI(apiUrl);
     processarKPIsContas(dados);
   }
@@ -295,6 +295,7 @@ let updateTimer; // Timer para atualização automática
     pararTemporizador(); // Parar a atualização automática ao realizar uma pesquisa manual
     atualizarTodosKPIs(); // Realizar a atualização de dados manualmente
   });
+
 
   // Busca o acumulado do mês atual ao carregar a página
   async function buscarAcumuladoMesAtual() {
