@@ -153,18 +153,12 @@ let updateTimer; // Timer para atualização automática
     // Atualiza a interface para cada filial
     Object.keys(saldosPorFilial).forEach(filialId => {
         const container = document.getElementById(`saldoBancoFilial${filialId}Detalhes`);
-        container.innerHTML = saldosPorFilial[filialId].join("<br>");
+        if (container) {
+            container.innerHTML = saldosPorFilial[filialId].join("<br>");
+        }
     });
+}
 
-    // Atualiza total do Grupo BRF1
-    const containerGrupoBRF1 = document.getElementById('saldoBancoGrupoDetalhes');
-    const valorTotalFormatado = formatarMoeda(saldoTotalGrupoBRF1);
-    const totalElemento = document.createElement('span');
-    totalElemento.innerHTML = `Total: ${valorTotalFormatado}`;
-    definirCorDoValor(valorTotalFormatado, totalElemento);
-    containerGrupoBRF1.innerHTML = '';
-    containerGrupoBRF1.appendChild(totalElemento);
-  }
 
   // Gestão de gráficos
   let graficoFluxoDeCaixa = null; // Variável global para armazenar o gráfico
