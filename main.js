@@ -5,37 +5,23 @@ document.addEventListener("DOMContentLoaded", function () {
   const pesquisarButton = document.getElementById("pesquisar");
   // Seletores para os KPIs de cada filial e do grupo
   const kpis = {
-    grupoBRF1: {
-      receberPago: document.getElementById("receberPagoGrupo"),
-      receberTitulo: document.getElementById("receberTituloGrupo"),
-      pagarPago: document.getElementById("pagarPagoGrupo"),
-      pagarTitulo: document.getElementById("pagarTituloGrupo"),
-      saldoDisponivel: document.getElementById("saldoDisponivelGrupo"),
-      saldoPrevisto: document.getElementById("saldoPrevistoGrupo"),
-    },
     1: {
       receberPago: document.getElementById("receberPagoFilial1"),
       receberTitulo: document.getElementById("receberTituloFilial1"),
       pagarPago: document.getElementById("pagarPagoFilial1"),
       pagarTitulo: document.getElementById("pagarTituloFilial1"),
-      saldoDisponivel: document.getElementById("saldoDisponivelFilial1"),
-      saldoPrevisto: document.getElementById("saldoPrevistoFilial1"),
     },
     2: {
       receberPago: document.getElementById("receberPagoFilial2"),
       receberTitulo: document.getElementById("receberTituloFilial2"),
       pagarPago: document.getElementById("pagarPagoFilial2"),
       pagarTitulo: document.getElementById("pagarTituloFilial2"),
-      saldoDisponivel: document.getElementById("saldoDisponivelFilial2"),
-      saldoPrevisto: document.getElementById("saldoPrevistoFilial2"),
     },
     3: {
       receberPago: document.getElementById("receberPagoFilial3"),
       receberTitulo: document.getElementById("receberTituloFilial3"),
       pagarPago: document.getElementById("pagarPagoFilial3"),
       pagarTitulo: document.getElementById("pagarTituloFilial3"),
-      saldoDisponivel: document.getElementById("saldoDisponivelFilial3"),
-      saldoPrevisto: document.getElementById("saldoPrevistoFilial3"),
     },
   };
 let updateTimer; // Timer para atualização automática
@@ -110,23 +96,8 @@ let updateTimer; // Timer para atualização automática
 
   // Processa KPIs de Contas a Receber/Pagar
   function processarKPIsContas(dados) {
-    let totalReceberPagoGrupo = 0;
-    let totalReceberTituloGrupo = 0;
-    let totalPagarPagoGrupo = 0;
-    let totalPagarTituloGrupo = 0;
-    let totalSaldoDisponivelGrupo = 0;
-    let totalSaldoPrevistoGrupo = 0;
-
     dados.forEach(dado => {
-        const { CODFILIAL, RECEBER_VALORPAGO, RECEBER_VALORTITULO, PAGAR_VALORPAGO, PAGAR_VALORTITULO, SALDO_DISP, SALDO_PREVISTO } = dado;
-
-        // Soma os totais para o Grupo BRF1
-        totalReceberPagoGrupo += RECEBER_VALORPAGO;
-        totalReceberTituloGrupo += RECEBER_VALORTITULO;
-        totalPagarPagoGrupo += PAGAR_VALORPAGO;
-        totalPagarTituloGrupo += PAGAR_VALORTITULO;
-        totalSaldoDisponivelGrupo += SALDO_DISP;
-        totalSaldoPrevistoGrupo += SALDO_PREVISTO;
+        const { CODFILIAL, RECEBER_VALORPAGO, RECEBER_VALORTITULO, PAGAR_VALORPAGO, PAGAR_VALORTITULO } = dado;
 
         // Atualiza os valores e cores para cada filial
         if (kpis.hasOwnProperty(CODFILIAL)) {
@@ -141,34 +112,10 @@ let updateTimer; // Timer para atualização automática
 
             kpis[CODFILIAL].pagarTitulo.textContent = formatarMoeda(PAGAR_VALORTITULO);
             definirCorDoValor(kpis[CODFILIAL].pagarTitulo.textContent, kpis[CODFILIAL].pagarTitulo);
-
-            kpis[CODFILIAL].saldoDisponivel.textContent = formatarMoeda(SALDO_DISP);
-            definirCorDoValor(kpis[CODFILIAL].saldoDisponivel.textContent, kpis[CODFILIAL].saldoDisponivel);
-
-            kpis[CODFILIAL].saldoPrevisto.textContent = formatarMoeda(SALDO_PREVISTO);
-            definirCorDoValor(kpis[CODFILIAL].saldoPrevisto.textContent, kpis[CODFILIAL].saldoPrevisto);
         }
     });
-
-    // Atualiza e define as cores dos totais para o Grupo BRF1
-    kpis.grupoBRF1.receberPago.textContent = formatarMoeda(totalReceberPagoGrupo);
-    definirCorDoValor(kpis.grupoBRF1.receberPago.textContent, kpis.grupoBRF1.receberPago);
-
-    kpis.grupoBRF1.receberTitulo.textContent = formatarMoeda(totalReceberTituloGrupo);
-    definirCorDoValor(kpis.grupoBRF1.receberTitulo.textContent, kpis.grupoBRF1.receberTitulo);
-
-    kpis.grupoBRF1.pagarPago.textContent = formatarMoeda(totalPagarPagoGrupo);
-    definirCorDoValor(kpis.grupoBRF1.pagarPago.textContent, kpis.grupoBRF1.pagarPago);
-
-    kpis.grupoBRF1.pagarTitulo.textContent = formatarMoeda(totalPagarTituloGrupo);
-    definirCorDoValor(kpis.grupoBRF1.pagarTitulo.textContent, kpis.grupoBRF1.pagarTitulo);
-
-    kpis.grupoBRF1.saldoDisponivel.textContent = formatarMoeda(totalSaldoDisponivelGrupo);
-    definirCorDoValor(kpis.grupoBRF1.saldoDisponivel.textContent, kpis.grupoBRF1.saldoDisponivel);
-
-    kpis.grupoBRF1.saldoPrevisto.textContent = formatarMoeda(totalSaldoPrevistoGrupo);
-    definirCorDoValor(kpis.grupoBRF1.saldoPrevisto.textContent, kpis.grupoBRF1.saldoPrevisto);
   }
+
 
   // Atualiza saldos dos bancos
   async function atualizarSaldosBanco() {
