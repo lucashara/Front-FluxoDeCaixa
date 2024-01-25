@@ -165,31 +165,42 @@ let updateTimer; // Timer para atualização automática
 
   // Cria gráfico de fluxo de caixa
   function criarGraficoFluxoDeCaixa(dados) {
-    const labels = dados.map(d => d.DTVENC);
-    const saldoDisponivelData = dados.map(d => d.SALDO_DISP);
-    const saldoPrevistoData = dados.map(d => d.SALDO_PREVISTO);
+    // Agrupar os dados por data
+    const dadosAgrupadosPorData = dados.reduce((acc, item) => {
+        const data = item.DTVENC;
+        if (!acc[data]) {
+            acc[data] = { RECEBER_VALORPAGO: 0, PAGAR_VALORPAGO: 0 };
+        }
+        acc[data].RECEBER_VALORPAGO += item.RECEBER_VALORPAGO;
+        acc[data].PAGAR_VALORPAGO += item.PAGAR_VALORPAGO;
+        return acc;
+    }, {});
 
+    // Preparar os dados para o gráfico
+    const labels = Object.keys(dadosAgrupadosPorData);
+    const dadosRecebido = labels.map(label => dadosAgrupadosPorData[label].RECEBER_VALORPAGO);
+    const dadosPagos = labels.map(label => dadosAgrupadosPorData[label].PAGAR_VALORPAGO);
+
+    // Configuração do gráfico
+    const ctx = document.getElementById('graficoFluxoDeCaixa').getContext('2d');
     if (graficoFluxoDeCaixa) {
-        // Gráfico já existe, atualize os dados
         graficoFluxoDeCaixa.data.labels = labels;
-        graficoFluxoDeCaixa.data.datasets[0].data = saldoDisponivelData;
-        graficoFluxoDeCaixa.data.datasets[1].data = saldoPrevistoData;
+        graficoFluxoDeCaixa.data.datasets[0].data = dadosRecebido;
+        graficoFluxoDeCaixa.data.datasets[1].data = dadosPagos;
         graficoFluxoDeCaixa.update();
     } else {
-        // Gráfico não existe, crie um novo
-        const ctx = document.getElementById('graficoFluxoDeCaixa').getContext('2d');
         graficoFluxoDeCaixa = new Chart(ctx, {
             type: 'line',
             data: {
                 labels: labels,
                 datasets: [{
-                    label: 'Saldo Disponível',
-                    data: saldoDisponivelData,
+                    label: 'Recebido',
+                    data: dadosRecebido,
                     borderColor: 'rgb(54, 162, 235)',
                     tension: 0.1
                 }, {
-                    label: 'Saldo Previsto',
-                    data: saldoPrevistoData,
+                    label: 'Contas Pagas',
+                    data: dadosPagos,
                     borderColor: 'rgb(255, 99, 132)',
                     tension: 0.1
                 }]
@@ -203,7 +214,8 @@ let updateTimer; // Timer para atualização automática
             }
         });
     }
-}
+  }
+
 
   // Temporizador e eventos da interface
   // Inicia o temporizador para atualização automática
