@@ -1,103 +1,131 @@
-/* Estilos Básicos */
 body {
   font-family: 'Arial', sans-serif;
-  background-color: #f4f4f4;
-  color: #333;
+  background-color: #f9f9f9;
   margin: 0;
   padding: 0;
-  overflow-x: hidden; /* Evita rolagem horizontal */
+  color: #333;
+  font-size: 14px; /* Redução do tamanho da fonte */
 }
 
-/* Container Principal */
 .container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: flex-start;
-  min-height: 100vh;
+  width: 100%;
+  margin: 10px auto;
+  overflow: hidden;
 }
 
 h1 {
-  margin: 20px 0;
+  text-align: center;
+  color: #333;
+  margin-bottom: 10px; /* Menor margem */
+  font-size: 20px; /* Tamanho menor para o título */
 }
 
-/* Estilização dos Filtros */
 .filtros {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  margin-bottom: 20px;
+  background-color: #e9e9e9;
+  padding: 10px;
+  text-align: center;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
 .filtros label, .filtros input, .filtros button {
   margin: 5px;
-  padding: 8px;
+  font-size: 14px;
 }
 
-.filtros button {
-  background-color: #007bff;
-  color: white;
-  border: none;
-  border-radius: 3px;
-  cursor: pointer;
-}
-
-.filtros button:hover {
-  background-color: #0056b3;
-}
-
-/* Área do Gráfico */
-.grafico {
-  width: 80%; /* Largura principal para o gráfico */
-  margin: 20px 0;
-}
-
-#graficoFluxoDeCaixa {
-  width: 100%;
-  height: 400px; /* Altura fixa para melhor visualização */
-}
-
-/* Estilização dos Cartões */
-.card-container {
-  display: flex;
-  justify-content: space-evenly; /* Espaçamento uniforme */
-  width: 100%; /* Largura total para alinhamento */
-  margin-bottom: 20px; /* Espaço abaixo dos cartões */
-  flex-wrap: wrap; /* Permite que os cartões se empilhem em telas menores */
-}
-
-.kpi, .saldo-banco {
-  flex: 1 1 45%; /* Ajusta a base e o crescimento para alinhamento lado a lado */
-  max-height: 300px;
-  overflow-y: auto;
-  background-color: #fff;
-  margin: 10px;
-  padding: 15px;
-  border-radius: 5px;
+.secao {
+  background-color: white;
+  margin-top: 10px;
+  padding: 10px;
+  border-radius: 8px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-  font-size: 0.9em;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
 }
 
-.kpi h2, .saldo-banco h2 {
-  margin-bottom: 15px;
+.secao h2 {
+  width: 100%;
+  color: #333;
+  margin-bottom: 10px;
+  text-align: center;
+  font-size: 18px;
+}
+
+.filial {
+  flex: 1;
+  margin: 5px;
+  min-width: 220px; /* Tamanho mínimo reduzido */
+}
+
+.filial h3 {
+  color: #555;
+  margin: 0 0 5px 0;
+  font-size: 16px;
 }
 
 .kpi-item, .saldo-banco-container div {
-  margin-bottom: 5px;
+  margin: 3px 0;
+  color: #666;
+  font-size: 14px;
 }
 
-/* Responsividade */
-@media screen and (max-width: 768px) {
-  .grafico, .card-container {
-    width: 100%;
+.grafico {
+  margin-top: 10px;
+  padding: 10px;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Estilos para telas menores (celulares) */
+@media (max-width: 600px) {
+  h1 {
+      font-size: 18px; /* Tamanho menor para o título */
   }
 
-  .kpi, .saldo-banco {
-    flex-basis: 100%; /* Cartões ocupam a largura total em telas menores */
-    max-height: none; /* Remove limitação de altura em telas menores */
+  .filtros label, .filtros input, .filtros button {
+      font-size: 12px; /* Tamanho menor para os filtros */
   }
 
-  #graficoFluxoDeCaixa {
-    height: 250px;
+  .secao h2 {
+      font-size: 16px; /* Tamanho menor para os títulos das seções */
+  }
+
+  .filial h3 {
+      font-size: 14px; /* Tamanho menor para os títulos das filiais */
+  }
+
+  .filial {
+      width: 100%; /* Cada filial ocupa a largura total em telas pequenas */
+      margin: 5px 0;
+  }
+
+  .kpi-item, .saldo-banco-container div {
+      font-size: 12px; /* Tamanho de fonte reduzido */
+  }
+}
+
+/* Estilos para telas médias (tablets) */
+@media (min-width: 601px) and (max-width: 1199px) {
+  .filial {
+      width: 45%; /* Cada filial ocupa quase metade da largura em tablets */
+      margin: 10px;
+  }
+}
+
+/* Responsividade para telas grandes (TV) */
+@media (min-width: 1200px) {
+  .container {
+      width: 95%;
+  }
+
+  .secao {
+      flex-direction: row;
+  }
+
+  .filial {
+      width: 30%;
+      margin: 5px;
   }
 }

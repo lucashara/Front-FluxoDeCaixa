@@ -159,62 +159,64 @@ let updateTimer; // Timer para atualização automática
     });
 }
 
-
   // Gestão de gráficos
   let graficoFluxoDeCaixa = null; // Variável global para armazenar o gráfico
 
   // Cria gráfico de fluxo de caixa
   function criarGraficoFluxoDeCaixa(dados) {
-    // Agrupar os dados por data
-    const dadosAgrupadosPorData = dados.reduce((acc, item) => {
-        const data = item.DTVENC;
-        if (!acc[data]) {
-            acc[data] = { RECEBER_VALORPAGO: 0, PAGAR_VALORPAGO: 0 };
-        }
-        acc[data].RECEBER_VALORPAGO += item.RECEBER_VALORPAGO;
-        acc[data].PAGAR_VALORPAGO += item.PAGAR_VALORPAGO;
-        return acc;
-    }, {});
+      // Agrupar os dados por data
+      const dadosAgrupadosPorData = dados.reduce((acc, item) => {
+          const data = item.DTVENC;
+          if (!acc[data]) {
+              acc[data] = { RECEBER_VALORPAGO: 0, PAGAR_VALORPAGO: 0 };
+          }
+          acc[data].RECEBER_VALORPAGO += item.RECEBER_VALORPAGO;
+          acc[data].PAGAR_VALORPAGO += item.PAGAR_VALORPAGO;
+          return acc;
+      }, {});
 
-    // Preparar os dados para o gráfico
-    const labels = Object.keys(dadosAgrupadosPorData);
-    const dadosRecebido = labels.map(label => dadosAgrupadosPorData[label].RECEBER_VALORPAGO);
-    const dadosPagos = labels.map(label => dadosAgrupadosPorData[label].PAGAR_VALORPAGO);
+      // Preparar os dados para o gráfico
+      const labels = Object.keys(dadosAgrupadosPorData);
+      const dadosRecebido = labels.map(label => dadosAgrupadosPorData[label].RECEBER_VALORPAGO);
+      const dadosPagos = labels.map(label => dadosAgrupadosPorData[label].PAGAR_VALORPAGO);
 
-    // Configuração do gráfico
-    const ctx = document.getElementById('graficoFluxoDeCaixa').getContext('2d');
-    if (graficoFluxoDeCaixa) {
-        graficoFluxoDeCaixa.data.labels = labels;
-        graficoFluxoDeCaixa.data.datasets[0].data = dadosRecebido;
-        graficoFluxoDeCaixa.data.datasets[1].data = dadosPagos;
-        graficoFluxoDeCaixa.update();
-    } else {
-        graficoFluxoDeCaixa = new Chart(ctx, {
-            type: 'line',
-            data: {
-                labels: labels,
-                datasets: [{
-                    label: 'Recebido',
-                    data: dadosRecebido,
-                    borderColor: 'rgb(54, 162, 235)',
-                    tension: 0.1
-                }, {
-                    label: 'Contas Pagas',
-                    data: dadosPagos,
-                    borderColor: 'rgb(255, 99, 132)',
-                    tension: 0.1
-                }]
-            },
-            options: {
-                scales: {
-                    y: {
-                        beginAtZero: true
-                    }
-                }
-            }
-        });
-    }
+      // Configuração do gráfico
+      const ctx = document.getElementById('graficoFluxoDeCaixa').getContext('2d');
+      if (graficoFluxoDeCaixa) {
+          graficoFluxoDeCaixa.data.labels = labels;
+          graficoFluxoDeCaixa.data.datasets[0].data = dadosRecebido;
+          graficoFluxoDeCaixa.data.datasets[1].data = dadosPagos;
+          graficoFluxoDeCaixa.update();
+      } else {
+          graficoFluxoDeCaixa = new Chart(ctx, {
+              type: 'bar', // Alteração para gráfico de barras
+              data: {
+                  labels: labels,
+                  datasets: [{
+                      label: 'Recebido',
+                      data: dadosRecebido,
+                      backgroundColor: 'rgb(54, 162, 235)', // Cor de fundo para as barras
+                      borderColor: 'rgb(54, 162, 235)',
+                      borderWidth: 1
+                  }, {
+                      label: 'Contas Pagas',
+                      data: dadosPagos,
+                      backgroundColor: 'rgb(255, 99, 132)', // Cor de fundo para as barras
+                      borderColor: 'rgb(255, 99, 132)',
+                      borderWidth: 1
+                  }]
+              },
+              options: {
+                  scales: {
+                      y: {
+                          beginAtZero: true
+                      }
+                  }
+              }
+          });
+      }
   }
+
 
 
   // Temporizador e eventos da interface
