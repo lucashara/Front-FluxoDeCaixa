@@ -17,54 +17,68 @@
         <input type="date" id="dataFinal" />
         <button id="pesquisar">Pesquisar</button>
     </div>
-    <div class="kpi">
-        <h2>Contas a Receber/Pagar</h2>
-            <!-- KPIs da Filial 1 -->
-            <div class="kpi-container" id="kpi-filial1">
-                <h3>Farmaum PB</h3>
-                <div class="kpi-item">Receber Pago: <span id="receberPagoFilial1"></span></div>
-                <div class="kpi-item">Receber Título: <span id="receberTituloFilial1"></span></div>
-                <div class="kpi-item">Pagar Pago: <span id="pagarPagoFilial1"></span></div>
-                <div class="kpi-item">Pagar Título: <span id="pagarTituloFilial1"></span></div>
-            </div>
-            <!-- KPIs da Filial 2 -->
-            <div class="kpi-container" id="kpi-filial2">
-                <h3>Farmaum RN</h3>
-                <div class="kpi-item">Receber Pago: <span id="receberPagoFilial2"></span></div>
-                <div class="kpi-item">Receber Título: <span id="receberTituloFilial2"></span></div>
-                <div class="kpi-item">Pagar Pago: <span id="pagarPagoFilial2"></span></div>
-                <div class="kpi-item">Pagar Título: <span id="pagarTituloFilial2"></span></div>
-            </div>
-            <!-- KPIs da Filial 3 -->
-            <div class="kpi-container" id="kpi-filial3">
-                <h3>Brasil</h3>
-                <div class="kpi-item">Receber Pago: <span id="receberPagoFilial3"></span></div>
-                <div class="kpi-item">Receber Título: <span id="receberTituloFilial3"></span></div>
-                <div class="kpi-item">Pagar Pago: <span id="pagarPagoFilial3"></span></div>
-                <div class="kpi-item">Pagar Título: <span id="pagarTituloFilial3"></span></div>
-            </div>
+
+    <!-- Seção Contas a Receber -->
+    <div class="secao">
+        <h2>Contas a Receber</h2>
+        <div class="filial" id="receberFilial1">
+            <h3>Farmaum PB</h3>
+            <div>Recebido: <span id="receberPagoFilial1"></span></div>
+            <div>A Receber Previsto: <span id="receberTituloFilial1"></span></div>
         </div>
-        <div class="saldo-banco">
-            <!-- Saldo do Banco para Filial 1 -->
-            <div class="saldo-banco-container" id="saldoBancoFilial1">
-                <h3>Farmaum PB</h3>
-                <div id="saldoBancoFilial1Detalhes"></div>
-            </div>
-            <!-- Saldo do Banco para Filial 2 -->
-            <div class="saldo-banco-container" id="saldoBancoFilial2">
-                <h3>Farmaum RN</h3>
-                <div id="saldoBancoFilial2Detalhes"></div>
-            </div>
-            <!-- Saldo do Banco para Filial 3 -->
-            <div class="saldo-banco-container" id="saldoBancoFilial3">
-                <h3>Brasil</h3>
-                <div id="saldoBancoFilial3Detalhes"></div>
-            </div>
+        <div class="filial" id="receberFilial2">
+            <h3>Farmaum RN</h3>
+            <div>Recebido: <span id="receberPagoFilial2"></span></div>
+            <div>A Receber Previsto: <span id="receberTituloFilial2"></span></div>
         </div>
-        <div class="grafico">
-            <canvas id="graficoFluxoDeCaixa"></canvas>
-        </div>   
-        </div>     
-      <script type="module" src="/main.js"></script>
-    </body>
-    </html>
+        <div class="filial" id="receberFilial3">
+            <h3>Brasil</h3>
+            <div>Recebido: <span id="receberPagoFilial3"></span></div>
+            <div>A Receber Previsto: <span id="receberTituloFilial3"></span></div>
+        </div>
+    </div>
+
+    <!-- Seção Contas a Pagar -->
+    <div class="secao">
+        <h2>Contas a Pagar</h2>
+        <div class="filial" id="pagarFilial1">
+            <h3>Farmaum PB</h3>
+            <div>Contas pagas: <span id="pagarPagoFilial1"></span></div>
+            <div>Contas a Pagar Previsto: <span id="pagarTituloFilial1"></span></div>
+        </div>
+        <div class="filial" id="pagarFilial2">
+            <h3>Farmaum RN</h3>
+            <div>Contas pagas: <span id="pagarPagoFilial2"></span></div>
+            <div>Contas a Pagar Previsto: <span id="pagarTituloFilial2"></span></div>
+        </div>
+        <div class="filial" id="pagarFilial3">
+            <h3>Brasil</h3>
+            <div>Contas pagas: <span id="pagarPagoFilial3"></span></div>
+            <div>Contas a Pagar Previsto: <span id="pagarTituloFilial3"></span></div>
+        </div>
+    </div>
+
+    <!-- Seção Saldo do Banco -->
+    <div class="secao">
+        <h2>Saldo do Banco</h2>
+        <div class="filial" id="saldoBancoFilial1">
+            <h3>Farmaum PB</h3>
+            <div id="saldoBancoFilial1Detalhes"></div>
+        </div>
+        <div class="filial" id="saldoBancoFilial2">
+            <h3>Farmaum RN</h3>
+            <div id="saldoBancoFilial2Detalhes"></div>
+        </div>
+        <div class="filial" id="saldoBancoFilial3">
+            <h3>Brasil</h3>
+            <div id="saldoBancoFilial3Detalhes"></div>
+        </div>
+    </div>
+
+    <div class="grafico">
+        <canvas id="graficoFluxoDeCaixa"></canvas>
+    </div>
+  </div>
+  <script type="module" src="/main.js"></script>
+</body>
+</html>
