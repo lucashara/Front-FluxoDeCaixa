@@ -153,63 +153,71 @@ let updateTimer; // Timer para atualização automática
     // Atualiza a interface para cada filial
     Object.keys(saldosPorFilial).forEach(filialId => {
         const container = document.getElementById(`saldoBancoFilial${filialId}Detalhes`);
-        container.innerHTML = saldosPorFilial[filialId].join("<br>");
+        if (container) {
+            container.innerHTML = saldosPorFilial[filialId].join("<br>");
+        }
     });
-
-    // Atualiza total do Grupo BRF1
-    const containerGrupoBRF1 = document.getElementById('saldoBancoGrupoDetalhes');
-    const valorTotalFormatado = formatarMoeda(saldoTotalGrupoBRF1);
-    const totalElemento = document.createElement('span');
-    totalElemento.innerHTML = `Total: ${valorTotalFormatado}`;
-    definirCorDoValor(valorTotalFormatado, totalElemento);
-    containerGrupoBRF1.innerHTML = '';
-    containerGrupoBRF1.appendChild(totalElemento);
-  }
+}
 
   // Gestão de gráficos
   let graficoFluxoDeCaixa = null; // Variável global para armazenar o gráfico
 
   // Cria gráfico de fluxo de caixa
   function criarGraficoFluxoDeCaixa(dados) {
-    const labels = dados.map(d => d.DTVENC);
-    const saldoDisponivelData = dados.map(d => d.SALDO_DISP);
-    const saldoPrevistoData = dados.map(d => d.SALDO_PREVISTO);
+      // Agrupar os dados por data
+      const dadosAgrupadosPorData = dados.reduce((acc, item) => {
+          const data = item.DTVENC;
+          if (!acc[data]) {
+              acc[data] = { RECEBER_VALORPAGO: 0, PAGAR_VALORPAGO: 0 };
+          }
+          acc[data].RECEBER_VALORPAGO += item.RECEBER_VALORPAGO;
+          acc[data].PAGAR_VALORPAGO += item.PAGAR_VALORPAGO;
+          return acc;
+      }, {});
 
-    if (graficoFluxoDeCaixa) {
-        // Gráfico já existe, atualize os dados
-        graficoFluxoDeCaixa.data.labels = labels;
-        graficoFluxoDeCaixa.data.datasets[0].data = saldoDisponivelData;
-        graficoFluxoDeCaixa.data.datasets[1].data = saldoPrevistoData;
-        graficoFluxoDeCaixa.update();
-    } else {
-        // Gráfico não existe, crie um novo
-        const ctx = document.getElementById('graficoFluxoDeCaixa').getContext('2d');
-        graficoFluxoDeCaixa = new Chart(ctx, {
-            type: 'line',
-            data: {
-                labels: labels,
-                datasets: [{
-                    label: 'Saldo Disponível',
-                    data: saldoDisponivelData,
-                    borderColor: 'rgb(54, 162, 235)',
-                    tension: 0.1
-                }, {
-                    label: 'Saldo Previsto',
-                    data: saldoPrevistoData,
-                    borderColor: 'rgb(255, 99, 132)',
-                    tension: 0.1
-                }]
-            },
-            options: {
-                scales: {
-                    y: {
-                        beginAtZero: true
-                    }
-                }
-            }
-        });
-    }
-}
+      // Preparar os dados para o gráfico
+      const labels = Object.keys(dadosAgrupadosPorData);
+      const dadosRecebido = labels.map(label => dadosAgrupadosPorData[label].RECEBER_VALORPAGO);
+      const dadosPagos = labels.map(label => dadosAgrupadosPorData[label].PAGAR_VALORPAGO);
+
+      // Configuração do gráfico
+      const ctx = document.getElementById('graficoFluxoDeCaixa').getContext('2d');
+      if (graficoFluxoDeCaixa) {
+          graficoFluxoDeCaixa.data.labels = labels;
+          graficoFluxoDeCaixa.data.datasets[0].data = dadosRecebido;
+          graficoFluxoDeCaixa.data.datasets[1].data = dadosPagos;
+          graficoFluxoDeCaixa.update();
+      } else {
+          graficoFluxoDeCaixa = new Chart(ctx, {
+              type: 'bar', // Alteração para gráfico de barras
+              data: {
+                  labels: labels,
+                  datasets: [{
+                      label: 'Recebido',
+                      data: dadosRecebido,
+                      backgroundColor: 'rgb(54, 162, 235)', // Cor de fundo para as barras
+                      borderColor: 'rgb(54, 162, 235)',
+                      borderWidth: 1
+                  }, {
+                      label: 'Contas Pagas',
+                      data: dadosPagos,
+                      backgroundColor: 'rgb(255, 99, 132)', // Cor de fundo para as barras
+                      borderColor: 'rgb(255, 99, 132)',
+                      borderWidth: 1
+                  }]
+              },
+              options: {
+                  scales: {
+                      y: {
+                          beginAtZero: true
+                      }
+                  }
+              }
+          });
+      }
+  }
+
+
 
   // Temporizador e eventos da interface
   // Inicia o temporizador para atualização automática
