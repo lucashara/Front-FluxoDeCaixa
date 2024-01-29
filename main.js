@@ -12,6 +12,8 @@ document.addEventListener("DOMContentLoaded", function () {
       pagarTitulo: document.getElementById("pagarTituloFilial1"),
       vendas: document.getElementById("valorVendasFilial1"),
       compras: document.getElementById("valorComprasFilial1"),
+      saldoPago: document.getElementById("saldoPagoFilial1"),
+      saldoTitulo: document.getElementById("saldoTituloFilial1"),
     },
     2: {
       receberPago: document.getElementById("receberPagoFilial2"),
@@ -20,6 +22,8 @@ document.addEventListener("DOMContentLoaded", function () {
       pagarTitulo: document.getElementById("pagarTituloFilial2"),
       vendas: document.getElementById("valorVendasFilial2"),
       compras: document.getElementById("valorComprasFilial2"),
+      saldoPago: document.getElementById("saldoPagoFilial2"),
+      saldoTitulo: document.getElementById("saldoTituloFilial2"),
     },
     3: {
       receberPago: document.getElementById("receberPagoFilial3"),
@@ -28,6 +32,8 @@ document.addEventListener("DOMContentLoaded", function () {
       pagarTitulo: document.getElementById("pagarTituloFilial3"),
       vendas: document.getElementById("valorVendasFilial3"),
       compras: document.getElementById("valorComprasFilial3"),
+      saldoPago: document.getElementById("saldoPagoFilial3"),
+      saldoTitulo: document.getElementById("saldoTituloFilial3"),
     },
   };
 let updateTimer; // Timer para atualização automática
@@ -107,7 +113,7 @@ let updateTimer; // Timer para atualização automática
   // Processa KPIs de Contas a Receber/Pagar
   function processarKPIsContas(dados) {
     dados.forEach(dado => {
-      const { CODFILIAL, RECEBER_VALORPAGO, RECEBER_VALORTITULO, PAGAR_VALORPAGO, PAGAR_VALORTITULO, VLSAIDAS, VLENTRADAS } = dado;
+      const { CODFILIAL, RECEBER_VALORPAGO, RECEBER_VALORTITULO, PAGAR_VALORPAGO, PAGAR_VALORTITULO, VLSAIDAS, VLENTRADAS, SALDO_VALORPAGO, SALDO_VALORTITULO } = dado;
 
         // Atualiza os valores e cores para cada filial
         if (kpis.hasOwnProperty(CODFILIAL)) {
@@ -128,6 +134,12 @@ let updateTimer; // Timer para atualização automática
 
             kpis[CODFILIAL].compras.textContent = formatarMoeda(VLENTRADAS);
             definirCorDoValor(kpis[CODFILIAL].compras.textContent, kpis[CODFILIAL].compras);
+
+            kpis[CODFILIAL].saldoPago.textContent = formatarMoeda(SALDO_VALORPAGO);
+            definirCorDoValor(kpis[CODFILIAL].saldoPago.textContent, kpis[CODFILIAL].saldoPago);
+
+            kpis[CODFILIAL].saldoTitulo.textContent = formatarMoeda(SALDO_VALORTITULO);
+            definirCorDoValor(kpis[CODFILIAL].saldoTitulo.textContent, kpis[CODFILIAL].saldoTitulo);
         }
     });
   }
