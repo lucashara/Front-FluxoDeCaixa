@@ -35,11 +35,15 @@ let updateTimer; // Timer para atualização automática
   // Funções utilitárias
   // Função para formatar número em formato de moeda
   function formatarMoeda(numero) {
+    if (numero === null || numero === undefined) {
+      return 'R$ 0,00'; // ou alguma outra representação para valores nulos
+    }
     return numero.toLocaleString("pt-BR", {
       style: "currency",
       currency: "BRL",
     });
   }
+  
 
   // Função para validar datas
   function validarDatas(dataInicial, dataFinal) {
