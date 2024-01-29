@@ -10,18 +10,24 @@ document.addEventListener("DOMContentLoaded", function () {
       receberTitulo: document.getElementById("receberTituloFilial1"),
       pagarPago: document.getElementById("pagarPagoFilial1"),
       pagarTitulo: document.getElementById("pagarTituloFilial1"),
+      vendas: document.getElementById("valorVendasFilial1"),
+      compras: document.getElementById("valorComprasFilial1"),
     },
     2: {
       receberPago: document.getElementById("receberPagoFilial2"),
       receberTitulo: document.getElementById("receberTituloFilial2"),
       pagarPago: document.getElementById("pagarPagoFilial2"),
       pagarTitulo: document.getElementById("pagarTituloFilial2"),
+      vendas: document.getElementById("valorVendasFilial2"),
+      compras: document.getElementById("valorComprasFilial2"),
     },
     3: {
       receberPago: document.getElementById("receberPagoFilial3"),
       receberTitulo: document.getElementById("receberTituloFilial3"),
       pagarPago: document.getElementById("pagarPagoFilial3"),
       pagarTitulo: document.getElementById("pagarTituloFilial3"),
+      vendas: document.getElementById("valorVendasFilial3"),
+      compras: document.getElementById("valorComprasFilial3"),
     },
   };
 let updateTimer; // Timer para atualização automática
@@ -97,7 +103,7 @@ let updateTimer; // Timer para atualização automática
   // Processa KPIs de Contas a Receber/Pagar
   function processarKPIsContas(dados) {
     dados.forEach(dado => {
-        const { CODFILIAL, RECEBER_VALORPAGO, RECEBER_VALORTITULO, PAGAR_VALORPAGO, PAGAR_VALORTITULO } = dado;
+      const { CODFILIAL, RECEBER_VALORPAGO, RECEBER_VALORTITULO, PAGAR_VALORPAGO, PAGAR_VALORTITULO, VLSAIDAS, VLENTRADAS } = dado;
 
         // Atualiza os valores e cores para cada filial
         if (kpis.hasOwnProperty(CODFILIAL)) {
@@ -112,6 +118,12 @@ let updateTimer; // Timer para atualização automática
 
             kpis[CODFILIAL].pagarTitulo.textContent = formatarMoeda(PAGAR_VALORTITULO);
             definirCorDoValor(kpis[CODFILIAL].pagarTitulo.textContent, kpis[CODFILIAL].pagarTitulo);
+
+            kpis[CODFILIAL].vendas.textContent = formatarMoeda(VLSAIDAS);
+            definirCorDoValor(kpis[CODFILIAL].vendas.textContent, kpis[CODFILIAL].vendas);
+
+            kpis[CODFILIAL].compras.textContent = formatarMoeda(VLENTRADAS);
+            definirCorDoValor(kpis[CODFILIAL].compras.textContent, kpis[CODFILIAL].compras);
         }
     });
   }

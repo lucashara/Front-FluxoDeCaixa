@@ -106,6 +106,20 @@ h1 {
   }
 }
 
+.rodape {
+  text-align: center;
+  padding: 20px;
+  background-color: #f1f1f1;
+  color: #333;
+  margin-top: 20px;
+}
+
+.rodape p {
+  margin: 0;
+  font-size: 16px;
+}
+
+
 /* Estilos para telas médias (tablets) */
 @media (min-width: 601px) and (max-width: 1199px) {
   .filial {
