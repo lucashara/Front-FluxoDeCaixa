@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="brf1.ico" type="image/x-icon" />
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link rel="stylesheet" href="/style.css">
     <title>Fluxo de Caixa</title>
@@ -36,6 +37,11 @@
             <div>Recebido: <span id="receberPagoFilial3"></span></div>
             <div>A Receber Previsto: <span id="receberTituloFilial3"></span></div>
         </div>
+        <div class="filial" id="receberBrf1">
+            <h3>BRF1</h3>
+            <div>Recebido: <span id="receberPagoBrf1"></span></div>
+            <div>A Receber Previsto: <span id="receberTituloBrf1"></span></div>
+        </div>
     </div>
 
     <!-- Seção Contas a Pagar -->
@@ -56,6 +62,78 @@
             <div>Contas pagas: <span id="pagarPagoFilial3"></span></div>
             <div>Contas a Pagar Previsto: <span id="pagarTituloFilial3"></span></div>
         </div>
+        <div class="filial" id="pagarBrf1">
+            <h3>BRF1</h3>
+            <div>Contas pagas: <span id="pagarPagoBrf1"></span></div>
+            <div>Contas a Pagar Previsto: <span id="pagarTituloBrf1"></span></div>
+        </div>
+    </div>
+
+    <!-- Seção Saldo Contas -->
+    <div class="secao">
+        <h2>Saldo Contas</h2>
+        <div class="filial" id="saldoContasFilial1">
+            <h3>Farmaum PB</h3>
+            <div>Saldo Pago: <span id="saldoPagoFilial1"></span></div>
+            <div>Saldo Previsto: <span id="saldoTituloFilial1"></span></div>
+        </div>
+        <div class="filial" id="saldoContasFilial2">
+            <h3>Farmaum RN</h3>
+            <div>Saldo Pago: <span id="saldoPagoFilial2"></span></div>
+            <div>Saldo Previsto: <span id="saldoTituloFilial2"></span></div>
+        </div>
+        <div class="filial" id="saldoContasFilial3">
+            <h3>Brasil</h3>
+            <div>Saldo Pago: <span id="saldoPagoFilial3"></span></div>
+            <div>Saldo Previsto: <span id="saldoTituloFilial3"></span></div>
+        </div>
+        <div class="filial" id="saldoContasBrf1">
+            <h3>BRF1</h3>
+            <div>Saldo Pago: <span id="saldoPagoBrf1"></span></div>
+            <div>Saldo Previsto: <span id="saldoTituloBrf1"></span></div>
+        </div>
+    </div>
+
+    <!-- Seção Vendas -->
+    <div class="secao">
+        <h2>Vendas</h2>
+        <div class="filial" id="vendasFilial1">
+            <h3>Farmaum PB</h3>
+            <div>Total de Vendas: <span id="valorVendasFilial1"></span></div>
+        </div>
+        <div class="filial" id="vendasFilial2">
+            <h3>Farmaum RN</h3>
+            <div>Total de Vendas: <span id="valorVendasFilial2"></span></div>
+        </div>
+        <div class="filial" id="vendasFilial3">
+            <h3>Brasil</h3>
+            <div>Total de Vendas: <span id="valorVendasFilial3"></span></div>
+        </div>
+        <div class="filial" id="vendasBrf1">
+            <h3>BRF1</h3>
+            <div>Total de Vendas: <span id="valorVendasBrf1"></span></div>
+        </div>
+    </div>
+
+    <!-- Seção Compras -->
+    <div class="secao">
+        <h2>Compras</h2>
+        <div class="filial" id="comprasFilial1">
+            <h3>Farmaum PB</h3>
+            <div>Total de Compras: <span id="valorComprasFilial1"></span></div>
+        </div>
+        <div class="filial" id="comprasFilial2">
+            <h3>Farmaum RN</h3>
+            <div>Total de Compras: <span id="valorComprasFilial2"></span></div>
+        </div>
+        <div class="filial" id="comprasFilial3">
+            <h3>Brasil</h3>
+            <div>Total de Compras: <span id="valorComprasFilial3"></span></div>
+        </div>
+        <div class="filial" id="comprasBrf1">
+            <h3>BRF1</h3>
+            <div>Total de Compras: <span id="valorComprasBrf1"></span></div>
+        </div>
     </div>
 
     <!-- Seção Saldo do Banco -->
@@ -73,12 +151,22 @@
             <h3>Brasil</h3>
             <div id="saldoBancoFilial3Detalhes"></div>
         </div>
+        <div class="filial" id="saldoBancoBrf1">
+            <h3>BRF1</h3>
+            <div id="saldoBancoBrf1Detalhes"></div>
+        </div>
     </div>
 
     <div class="grafico">
         <canvas id="graficoFluxoDeCaixa"></canvas>
     </div>
   </div>
+
+  <!-- Rodapé -->
+  <footer class="rodape">
+      <p>Feito com ❤️ pelo TI do Grupo BRF1</p>
+  </footer>
+
   <script type="module" src="/main.js"></script>
 </body>
 </html>
