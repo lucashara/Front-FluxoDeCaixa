@@ -71,16 +71,145 @@ input[type="date"], .btn {
   background-color: #0056b3;
   color: white;
   cursor: pointer;
+  border: 0.0625rem solid #333; /* 1px dividido por 16 */
 }
 
-.btn:hover {
-  background-color: #004494;
+
+label{
+  font-size: 1.125rem;
+  color: #0056b3;
+  font-weight: 600;
+  color: #000;
 }
 
-/* Responsividade e ajustes finais */
-@media (max-width: 768px) {
-  .filtros {
-    flex-direction: column;
+
+/*Flex box*/
+.confGeral{   
+  display: flex;
+  flex-direction: row; 
+}
+
+h2 { 
+  background-color: #4b89cc;
+  padding: 0.3125rem; /* 5px dividido por 16 */
+  border-radius: 0.5rem; /* 8px dividido por 16 */
+  text-align: center;
+  color: #fff;
+}
+
+
+.confSecao {
+  width: 26.25rem; /* 420px dividido por 16 */
+  height: 33.125rem; /* 530px dividido por 16 */
+  box-shadow: 0 0.125rem 0.3125rem rgba(0, 0, 0, 0.1); /* 0 2px 5px dividido por 16 */
+  background-color: white;
+  border-radius: 0.5rem; /* 8px dividido por 16 */
+  padding: 0.625rem; /* 10px dividido por 16 */
+  margin: 0.5rem; /* 8px dividido por 16 */
+  position: relative;
+  display: inline-block;
+}
+ 
+
+.saldoBanco {
+  width: 35.625rem; /* 570px dividido por 16 */
+  box-shadow: 0 0.125rem 0.3125rem rgba(0, 0, 0, 0.1); /* 0 2px 5px dividido por 16 */
+  background-color: white;
+  border-radius: 0.5rem; /* 8px dividido por 16 */
+  padding: 0.9375rem; /* 15px dividido por 16 */
+  margin: 0.5rem; /* 8px dividido por 16 */
+  flex-direction: column; 
+}
+
+
+.viewBan {
+  display: flex; 
+  flex-direction: column;
+  width: 31.25rem; /* 500px dividido por 16 */
+  font-size: 1rem; /* Tamanho de fonte em rem, assumindo que 1rem seja igual a 16px */
+}
+
+
+/* Estilos para o gráfico */
+.grafico {
+  margin-top: 0.625rem; /* 10px dividido por 16 */
+  padding: 0.625rem; /* 10px dividido por 16 */
+  background-color: white;
+  border-radius: 0.5rem; /* 8px dividido por 16 */
+  box-shadow: 0 0.125rem 0.3125rem rgba(0, 0, 0, 0.1); /* 0 2px 5px dividido por 16 */
+  flex-direction: column;
+  position: absolute;
+  top: 40rem; /* 640px dividido por 16 */
+  height: 44.0625rem; /* 705px dividido por 16 */
+  width: 80rem; /* 1280px dividido por 16 */
+  margin-left: 0.5rem; /* 8px dividido por 16 */
+}
+
+
+/*Fim estilização*/ 
+
+.secao h2 {
+  width: 100%;
+  color: #333;
+  margin-bottom: 0.3125rem; /* 5px dividido por 16 */
+  text-align: center;
+  font-size: 1.375rem; /* 22px dividido por 16 */
+  font-weight: 600;
+}
+
+
+/* Estilo para cada filial */
+.filial {
+  flex: 1;
+  margin: 0.3125rem; /* 5px dividido por 16 */
+  min-width: 15.625rem; /* 250px dividido por 16 */
+  display: flex;
+  justify-content: space-around;
+  flex-direction: column; /* Direção da flex para melhor organização */
+} 
+
+
+.filial h3 {
+  color: #555;
+  margin: 0 0 0.3125rem 0; /* 5px dividido por 16 */
+  font-size: 1rem; /* 16px dividido por 16 */
+} 
+
+
+.kpi-item, .saldo-banco-container div {
+  margin: 0.125rem 0; /* 2px dividido por 16 */
+  color: #666;
+  font-size: 0.875rem; /* 14px dividido por 16 */
+  display: flex;
+  justify-content: space-between; /* Alinhamento dos itens */
+  align-items: center; /* Centralização vertical */
+}
+
+
+/* Estilo para o rodapé */
+.rodape {
+  text-align: center;
+  padding: 0.625rem; /* 10px dividido por 16 */
+  background-color: #e1e1e1;
+  color: #333;
+  margin-top: 1.25rem; /* 20px dividido por 16 */
+}
+
+
+.rodape p {
+  margin: 0;
+  font-size: 1rem; /* 16px dividido por 16 */
+}
+
+
+/* Responsividade para telas menores */
+@media (max-width: 600px) {
+  .filial {
+    width: 100%;
+  }
+
+  .secao h2 {
+    font-size: 18px;
   }
 
   .filtros label, .filtros input, .filtros button {
