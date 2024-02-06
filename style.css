@@ -227,7 +227,7 @@ h2 {
 
 .rodape p {
   margin: 0;
-  font-size: 1rem; /* 16px dividido por 16 */
+  font-size: 16px; /* 16px dividido por 16 */
 }
 
 
