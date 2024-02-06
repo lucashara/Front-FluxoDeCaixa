@@ -1,4 +1,8 @@
 /* Estilo principal */
+*{
+  box-sizing: border-box;
+}
+
 body {
   font-family: 'Arial', sans-serif;
   background-color: #f4f4f4;
@@ -8,103 +12,224 @@ body {
 }
 
 /* Container principal */
+
+
 .container {
-  width: 98%;
-  max-width: 1600px; /* Aumento da largura máxima */
-  margin: 10px auto;
+  width: 6.125rem; /* 98% de 16px (tamanho da fonte do elemento raiz) */
+  max-width: 115.625rem; /* 1850px dividido por 16 */
+  margin: 0.625rem auto; /* 10px dividido por 16 */
   overflow: hidden;
 }
 
 /* Título principal */
+
 h1 {
   text-align: center;
   color: #0056b3;
-  margin-bottom: 5px;
-  font-size: 28px; /* Aumento do tamanho */
+  margin-bottom: 0.3125rem; /* 5px dividido por 16 */
+  font-size: 1.75rem; /* 28px dividido por 16 */
   font-weight: bold;
+  padding-left: 0.8125rem; /* 13px dividido por 16 */
 }
 
 /* Estilos para os filtros */
-.filtros {
-  background-color: #e9e9e9;
-  padding: 10px;
+
+
+.filtros { 
+  background-color: #e9e9e9; 
+  padding: 0.625rem; /* 10px dividido por 16 */
   text-align: center;
-  border-radius: 8px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  border-radius: 0.5rem; /* 8px dividido por 16 */
+  box-shadow: 0 0.125rem 0.3125rem rgba(0, 0, 0, 0.1); /* 0 2px 5px dividido por 16 */
+  display: flex; 
 }
 
-.filtros label, .filtros input, .filtros button {
-  margin: 5px;
-  font-size: 14px;
+.dados {
+  padding-top: 0.625rem; /* 10px dividido por 16 */
+  padding-left: 60rem; /* 960px dividido por 16 */
 }
+
+ 
 
 /* Estilos para as seções de dados */
 .secao {
   background-color: white;
-  margin-top: 10px;
-  padding: 10px;
-  border-radius: 8px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-  display: flex;
+  margin-top: 0.625rem; /* 10px dividido por 16 */
+  padding: 0.625rem 0rem 0.625rem 0.625rem; /* 10px dividido por 16 */
+  border-radius: 0.5rem; /* 8px dividido por 16 */
+  box-shadow: 0 0.125rem 0.3125rem rgba(0, 0, 0, 0.1); /* 0 2px 5px dividido por 16 */
+  display: flex; 
   flex-wrap: wrap;
-  justify-content: space-between; /* Melhor distribuição dos elementos */
+  justify-content: space-between; /* Melhor distribuição dos elementos */  
 }
+
+
+/*Inicio estilização*/
+input[type=date] { 
+  padding: 0.3125rem 1.0625rem; /* 5px dividido por 16 e 17px dividido por 16 */
+  border: 0.0625rem solid #0056b3; /* 1px dividido por 16 */
+  color: #0056b3;
+  font-size: 1rem; /* Tamanho de fonte em rem, assumindo que 1rem seja igual a 16px */
+}
+
+
+.titulos {  
+  font-size: 1rem; /* Tamanho de fonte em rem, assumindo que 1rem seja igual a 16px */
+  padding-bottom: 0.75rem; /* 12px dividido por 16 */
+}
+
+
+.recPrev {
+  font-size: 1rem !important; /* Tamanho de fonte em rem, assumindo que 1rem seja igual a 16px */
+  display: flex;
+  right: 4.375rem !important; /* 70px dividido por 16 */
+  padding-bottom: 0.5rem; /* 8px dividido por 16 */
+}
+
+
+
+.btn {
+  background-color: #0056b3;
+  padding: 0.5625rem 1.1875rem; /* 9px dividido por 16 e 19px dividido por 16 */
+  color: #fff;
+  border: none;
+}
+
+
+.btn:hover {
+  background-color: #fff;
+  color: #0056b3;
+  cursor: pointer;
+  border: 0.0625rem solid #333; /* 1px dividido por 16 */
+}
+
+
+label{
+  font-size: 1.125rem;
+  color: #0056b3;
+  font-weight: 600;
+  color: #000;
+}
+
+
+/*Flex box*/
+.confGeral{   
+  display: flex;
+  flex-direction: row; 
+}
+
+h2 { 
+  background-color: #4b89cc;
+  padding: 0.3125rem; /* 5px dividido por 16 */
+  border-radius: 0.5rem; /* 8px dividido por 16 */
+  text-align: center;
+  color: #fff;
+}
+
+
+.confSecao {
+  width: 26.25rem; /* 420px dividido por 16 */
+  height: 33.125rem; /* 530px dividido por 16 */
+  box-shadow: 0 0.125rem 0.3125rem rgba(0, 0, 0, 0.1); /* 0 2px 5px dividido por 16 */
+  background-color: white;
+  border-radius: 0.5rem; /* 8px dividido por 16 */
+  padding: 0.625rem; /* 10px dividido por 16 */
+  margin: 0.5rem; /* 8px dividido por 16 */
+  position: relative;
+  display: inline-block;
+}
+ 
+
+.saldoBanco {
+  width: 35.625rem; /* 570px dividido por 16 */
+  box-shadow: 0 0.125rem 0.3125rem rgba(0, 0, 0, 0.1); /* 0 2px 5px dividido por 16 */
+  background-color: white;
+  border-radius: 0.5rem; /* 8px dividido por 16 */
+  padding: 0.9375rem; /* 15px dividido por 16 */
+  margin: 0.5rem; /* 8px dividido por 16 */
+  flex-direction: column; 
+}
+
+
+.viewBan {
+  display: flex; 
+  flex-direction: column;
+  width: 31.25rem; /* 500px dividido por 16 */
+  font-size: 1rem; /* Tamanho de fonte em rem, assumindo que 1rem seja igual a 16px */
+}
+
+
+/* Estilos para o gráfico */
+.grafico {
+  margin-top: 0.625rem; /* 10px dividido por 16 */
+  padding: 0.625rem; /* 10px dividido por 16 */
+  background-color: white;
+  border-radius: 0.5rem; /* 8px dividido por 16 */
+  box-shadow: 0 0.125rem 0.3125rem rgba(0, 0, 0, 0.1); /* 0 2px 5px dividido por 16 */
+  flex-direction: column;
+  position: absolute;
+  top: 40rem; /* 640px dividido por 16 */
+  height: 44.0625rem; /* 705px dividido por 16 */
+  width: 80rem; /* 1280px dividido por 16 */
+  margin-left: 0.5rem; /* 8px dividido por 16 */
+}
+
+
+/*Fim estilização*/ 
 
 .secao h2 {
   width: 100%;
   color: #333;
-  margin-bottom: 5px;
+  margin-bottom: 0.3125rem; /* 5px dividido por 16 */
   text-align: center;
-  font-size: 22px; /* Aumento do tamanho para destaque */
+  font-size: 1.375rem; /* 22px dividido por 16 */
   font-weight: 600;
 }
+
 
 /* Estilo para cada filial */
 .filial {
   flex: 1;
-  margin: 5px;
-  min-width: 180px; /* Ajuste do tamanho mínimo */
+  margin: 0.3125rem; /* 5px dividido por 16 */
+  min-width: 15.625rem; /* 250px dividido por 16 */
   display: flex;
+  justify-content: space-around;
   flex-direction: column; /* Direção da flex para melhor organização */
-}
+} 
+
 
 .filial h3 {
   color: #555;
-  margin: 0 0 5px 0;
-  font-size: 16px;
-}
+  margin: 0 0 0.3125rem 0; /* 5px dividido por 16 */
+  font-size: 1rem; /* 16px dividido por 16 */
+} 
+
 
 .kpi-item, .saldo-banco-container div {
-  margin: 2px 0;
+  margin: 0.125rem 0; /* 2px dividido por 16 */
   color: #666;
-  font-size: 14px;
+  font-size: 0.875rem; /* 14px dividido por 16 */
   display: flex;
   justify-content: space-between; /* Alinhamento dos itens */
   align-items: center; /* Centralização vertical */
 }
 
-/* Estilos para o gráfico */
-.grafico {
-  margin-top: 10px;
-  padding: 10px;
-  background-color: white;
-  border-radius: 8px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-}
 
 /* Estilo para o rodapé */
 .rodape {
   text-align: center;
-  padding: 10px;
+  padding: 0.625rem; /* 10px dividido por 16 */
   background-color: #e1e1e1;
   color: #333;
-  margin-top: 20px;
+  margin-top: 1.25rem; /* 20px dividido por 16 */
 }
+
 
 .rodape p {
   margin: 0;
-  font-size: 16px;
+  font-size: 1rem; /* 16px dividido por 16 */
 }
+
 
 /* Responsividade para telas menores */
 @media (max-width: 600px) {
@@ -126,19 +251,20 @@ h1 {
 }
 
 /* Responsividade para telas médias */
-@media (min-width: 601px) and (max-width: 1199px) {
+@media (min-width: 37.5625rem) and (max-width: 74.9375rem) {
   .filial {
-    width: calc(50% - 10px); /* Ajuste para duas colunas */
+    width: calc(50% - 0.625rem); /* Ajuste para duas colunas */
   }
 }
 
 /* Responsividade para telas grandes */
-@media (min-width: 1200px) {
+@media (min-width: 75rem) {
   .container {
     width: 100%;
   }
 
   .filial {
-    width: calc(25% - 10px); /* Ajuste para quatro colunas */
+    width: calc(25% - 0.625rem); /* Ajuste para quatro colunas */
   }
 }
+

@@ -246,7 +246,7 @@ let updateTimer; // Timer para atualização automática
     // Atualiza a interface para cada filial
     Object.keys(saldosPorFilial).forEach(filialId => {
       const container = document.getElementById(`saldoBanco${filialId === 'brf1' ? 'Brf1' : 'Filial' + filialId}Detalhes`);
-      if (container) {
+      if (container) { 
         container.innerHTML = saldosPorFilial[filialId].join("<br>");
       }
     });
