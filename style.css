@@ -159,22 +159,6 @@ h2 {
 }
 
 
-/* Estilos para o gráfico */
-.grafico {
-  margin-top: 0.625rem; /* 10px dividido por 16 */
-  padding: 0.625rem; /* 10px dividido por 16 */
-  background-color: white;
-  border-radius: 0.5rem; /* 8px dividido por 16 */
-  box-shadow: 0 0.125rem 0.3125rem rgba(0, 0, 0, 0.1); /* 0 2px 5px dividido por 16 */
-  flex-direction: column;
-  position: absolute;
-  top: 40rem; /* 640px dividido por 16 */
-  height: 44.0625rem; /* 705px dividido por 16 */
-  width: 80rem; /* 1280px dividido por 16 */
-  margin-left: 0.5rem; /* 8px dividido por 16 */
-}
-/* teste */
-
 /*Fim estilização*/ 
 
 .secao h2 {

@@ -103,17 +103,6 @@ let updateTimer; // Timer para atualização automática
     }
   }
 
-  // Função para buscar dados para o gráfico
-  async function buscarDadosFluxoDeCaixaDia() {
-    const apiUrl = `https://sga.grupobrf1.com:4445/fluxo_de_caixa_dia?data_inicial=${formatarData(dataInicialInput.value)}&data_final=${formatarData(dataFinalInput.value)}`;
-    try {
-        const dados = await buscarDadosAPI(apiUrl);
-        criarGraficoFluxoDeCaixa(dados);
-    } catch (error) {
-        console.error("Erro ao buscar dados para o gráfico:", error);
-    }
-  }
-
   // Funções de atualização e processamento de dados
   // Atualiza KPIs de Contas a Receber/Pagar
   async function atualizarKPIsContas() {
@@ -252,67 +241,6 @@ let updateTimer; // Timer para atualização automática
     });
   }
 
-
-  // Gestão de gráficos
-  let graficoFluxoDeCaixa = null; // Variável global para armazenar o gráfico
-
-  // Cria gráfico de fluxo de caixa
-  function criarGraficoFluxoDeCaixa(dados) {
-      // Agrupar os dados por data
-      const dadosAgrupadosPorData = dados.reduce((acc, item) => {
-          const data = item.DTVENC;
-          if (!acc[data]) {
-              acc[data] = { RECEBER_VALORPAGO: 0, PAGAR_VALORPAGO: 0 };
-          }
-          acc[data].RECEBER_VALORPAGO += item.RECEBER_VALORPAGO;
-          acc[data].PAGAR_VALORPAGO += item.PAGAR_VALORPAGO;
-          return acc;
-      }, {});
-
-      // Preparar os dados para o gráfico
-      const labels = Object.keys(dadosAgrupadosPorData);
-      const dadosRecebido = labels.map(label => dadosAgrupadosPorData[label].RECEBER_VALORPAGO);
-      const dadosPagos = labels.map(label => dadosAgrupadosPorData[label].PAGAR_VALORPAGO);
-
-      // Configuração do gráfico
-      const ctx = document.getElementById('graficoFluxoDeCaixa').getContext('2d');
-      if (graficoFluxoDeCaixa) {
-          graficoFluxoDeCaixa.data.labels = labels;
-          graficoFluxoDeCaixa.data.datasets[0].data = dadosRecebido;
-          graficoFluxoDeCaixa.data.datasets[1].data = dadosPagos;
-          graficoFluxoDeCaixa.update();
-      } else {
-          graficoFluxoDeCaixa = new Chart(ctx, {
-              type: 'bar', // Alteração para gráfico de barras
-              data: {
-                  labels: labels,
-                  datasets: [{
-                      label: 'Recebido',
-                      data: dadosRecebido,
-                      backgroundColor: 'rgb(54, 162, 235)', // Cor de fundo para as barras
-                      borderColor: 'rgb(54, 162, 235)',
-                      borderWidth: 1
-                  }, {
-                      label: 'Contas Pagas',
-                      data: dadosPagos,
-                      backgroundColor: 'rgb(255, 99, 132)', // Cor de fundo para as barras
-                      borderColor: 'rgb(255, 99, 132)',
-                      borderWidth: 1
-                  }]
-              },
-              options: {
-                  scales: {
-                      y: {
-                          beginAtZero: true
-                      }
-                  }
-              }
-          });
-      }
-  }
-
-
-
   // Temporizador e eventos da interface
   // Inicia o temporizador para atualização automática
   function iniciarTemporizador() {
@@ -336,7 +264,6 @@ let updateTimer; // Timer para atualização automática
     }
     await atualizarKPIsContas();
     await atualizarSaldosBanco();
-    await buscarDadosFluxoDeCaixaDia(); // Atualiza o gráfico
   }
 
   // Evento de clique para o botão de pesquisa
