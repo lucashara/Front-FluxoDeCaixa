@@ -1,254 +1,97 @@
-/* Estilo principal */
-*{
+/* Reset básico e estilos globais */
+* {
+  margin: 0;
+  padding: 0;
   box-sizing: border-box;
 }
 
 body {
   font-family: 'Arial', sans-serif;
   background-color: #f4f4f4;
-  margin: 0;
-  padding: 0;
   color: #333;
+  font-size: 16px; /* Base para o cálculo de rem */
 }
-
-/* Container principal */
-
 
 .container {
-  width: 6.125rem; /* 98% de 16px (tamanho da fonte do elemento raiz) */
-  max-width: 115.625rem; /* 1850px dividido por 16 */
-  margin: 0.625rem auto; /* 10px dividido por 16 */
-  overflow: hidden;
+  max-width: 96rem;
+  margin: 1rem auto;
+  padding: 1rem;
 }
 
-/* Título principal */
-
-h1 {
-  text-align: center;
+h1, h2, h3 {
   color: #0056b3;
-  margin-bottom: 0.3125rem; /* 5px dividido por 16 */
-  font-size: 1.75rem; /* 28px dividido por 16 */
-  font-weight: bold;
-  padding-left: 0.8125rem; /* 13px dividido por 16 */
 }
 
-/* Estilos para os filtros */
-
-
-.filtros { 
-  background-color: #e9e9e9; 
-  padding: 0.625rem; /* 10px dividido por 16 */
-  text-align: center;
-  border-radius: 0.5rem; /* 8px dividido por 16 */
-  box-shadow: 0 0.125rem 0.3125rem rgba(0, 0, 0, 0.1); /* 0 2px 5px dividido por 16 */
-  display: flex; 
+/* Layout principal com CSS Grid */
+.confGeral {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1rem;
 }
 
-.dados {
-  padding-top: 0.625rem; /* 10px dividido por 16 */
-  padding-left: 60rem; /* 960px dividido por 16 */
+/* Estilização das seções de KPIs */
+.confSecao {
+  background-color: #fff;
+  border-radius: 0.5rem;
+  box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.1);
+  padding: 1rem;
 }
 
- 
-
-/* Estilos para as seções de dados */
-.secao {
-  background-color: white;
-  margin-top: 0.625rem; /* 10px dividido por 16 */
-  padding: 0.625rem 0rem 0.625rem 0.625rem; /* 10px dividido por 16 */
-  border-radius: 0.5rem; /* 8px dividido por 16 */
-  box-shadow: 0 0.125rem 0.3125rem rgba(0, 0, 0, 0.1); /* 0 2px 5px dividido por 16 */
-  display: flex; 
-  flex-wrap: wrap;
-  justify-content: space-between; /* Melhor distribuição dos elementos */  
+/* Estilização específica para o Saldo do Banco */
+.saldoBanco {
+  grid-column: 1 / -1; /* Ocupa todas as colunas disponíveis */
+  background-color: #fff;
+  border-radius: 0.5rem;
+  box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.1);
+  padding: 1rem;
+  display: flex; /* Para alinhar os itens internos na horizontal */
+  align-items: center;
+  justify-content: space-between; /* Distribui o espaço entre os itens internamente */
 }
 
-
-/*Inicio estilização*/
-input[type=date] { 
-  padding: 0.3125rem 1.0625rem; /* 5px dividido por 16 e 17px dividido por 16 */
-  border: 0.0625rem solid #0056b3; /* 1px dividido por 16 */
-  color: #0056b3;
-  font-size: 1rem; /* Tamanho de fonte em rem, assumindo que 1rem seja igual a 16px */
-}
-
-
-.titulos {  
-  font-size: 1rem; /* Tamanho de fonte em rem, assumindo que 1rem seja igual a 16px */
-  padding-bottom: 0.75rem; /* 12px dividido por 16 */
-}
-
-
-.recPrev {
-  font-size: 1rem !important; /* Tamanho de fonte em rem, assumindo que 1rem seja igual a 16px */
+/* Estilos para filtros, botões e labels */
+.filtros {
   display: flex;
-  right: 4.375rem !important; /* 70px dividido por 16 */
-  padding-bottom: 0.5rem; /* 8px dividido por 16 */
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
 }
 
+.filtros label, .filtros input, .filtros button {
+  margin: 0.5rem;
+}
 
+input[type="date"], .btn {
+  padding: 0.5rem;
+  border: 1px solid #0056b3;
+  border-radius: 0.25rem;
+}
 
 .btn {
   background-color: #0056b3;
-  padding: 0.5625rem 1.1875rem; /* 9px dividido por 16 e 19px dividido por 16 */
-  color: #fff;
-  border: none;
+  color: white;
+  cursor: pointer;
 }
-
 
 .btn:hover {
-  background-color: #fff;
-  color: #0056b3;
-  cursor: pointer;
-  border: 0.0625rem solid #333; /* 1px dividido por 16 */
+  background-color: #004494;
 }
 
-
-label{
-  font-size: 1.125rem;
-  color: #0056b3;
-  font-weight: 600;
-  color: #000;
-}
-
-
-/*Flex box*/
-.confGeral{   
-  display: flex;
-  flex-direction: row; 
-}
-
-h2 { 
-  background-color: #4b89cc;
-  padding: 0.3125rem; /* 5px dividido por 16 */
-  border-radius: 0.5rem; /* 8px dividido por 16 */
-  text-align: center;
-  color: #fff;
-}
-
-
-.confSecao {
-  width: 26.25rem; /* 420px dividido por 16 */
-  height: 33.125rem; /* 530px dividido por 16 */
-  box-shadow: 0 0.125rem 0.3125rem rgba(0, 0, 0, 0.1); /* 0 2px 5px dividido por 16 */
-  background-color: white;
-  border-radius: 0.5rem; /* 8px dividido por 16 */
-  padding: 0.625rem; /* 10px dividido por 16 */
-  margin: 0.5rem; /* 8px dividido por 16 */
-  position: relative;
-  display: inline-block;
-}
- 
-
-.saldoBanco {
-  width: 35.625rem; /* 570px dividido por 16 */
-  box-shadow: 0 0.125rem 0.3125rem rgba(0, 0, 0, 0.1); /* 0 2px 5px dividido por 16 */
-  background-color: white;
-  border-radius: 0.5rem; /* 8px dividido por 16 */
-  padding: 0.9375rem; /* 15px dividido por 16 */
-  margin: 0.5rem; /* 8px dividido por 16 */
-  flex-direction: column; 
-}
-
-
-.viewBan {
-  display: flex; 
-  flex-direction: column;
-  width: 31.25rem; /* 500px dividido por 16 */
-  font-size: 1rem; /* Tamanho de fonte em rem, assumindo que 1rem seja igual a 16px */
-}
-
-
-/*Fim estilização*/ 
-
-.secao h2 {
-  width: 100%;
-  color: #333;
-  margin-bottom: 0.3125rem; /* 5px dividido por 16 */
-  text-align: center;
-  font-size: 1.375rem; /* 22px dividido por 16 */
-  font-weight: 600;
-}
-
-
-/* Estilo para cada filial */
-.filial {
-  flex: 1;
-  margin: 0.3125rem; /* 5px dividido por 16 */
-  min-width: 15.625rem; /* 250px dividido por 16 */
-  display: flex;
-  justify-content: space-around;
-  flex-direction: column; /* Direção da flex para melhor organização */
-} 
-
-
-.filial h3 {
-  color: #555;
-  margin: 0 0 0.3125rem 0; /* 5px dividido por 16 */
-  font-size: 1rem; /* 16px dividido por 16 */
-} 
-
-
-.kpi-item, .saldo-banco-container div {
-  margin: 0.125rem 0; /* 2px dividido por 16 */
-  color: #666;
-  font-size: 0.875rem; /* 14px dividido por 16 */
-  display: flex;
-  justify-content: space-between; /* Alinhamento dos itens */
-  align-items: center; /* Centralização vertical */
-}
-
-
-/* Estilo para o rodapé */
-.rodape {
-  text-align: center;
-  padding: 0.625rem; /* 10px dividido por 16 */
-  background-color: #e1e1e1;
-  color: #333;
-  margin-top: 1.25rem; /* 20px dividido por 16 */
-}
-
-
-.rodape p {
-  margin: 0;
-  font-size: 16px; /* 16px dividido por 16 */
-}
-
-
-/* Responsividade para telas menores */
-@media (max-width: 600px) {
-  .filial {
-    width: 100%;
-  }
-
-  .secao h2 {
-    font-size: 18px;
+/* Responsividade e ajustes finais */
+@media (max-width: 768px) {
+  .filtros {
+    flex-direction: column;
   }
 
   .filtros label, .filtros input, .filtros button {
-    font-size: 12px;
-  }
-
-  h1 {
-    font-size: 24px;
-  }
-}
-
-/* Responsividade para telas médias */
-@media (min-width: 37.5625rem) and (max-width: 74.9375rem) {
-  .filial {
-    width: calc(50% - 0.625rem); /* Ajuste para duas colunas */
-  }
-}
-
-/* Responsividade para telas grandes */
-@media (min-width: 75rem) {
-  .container {
     width: 100%;
-  }
-
-  .filial {
-    width: calc(25% - 0.625rem); /* Ajuste para quatro colunas */
+    margin: 0.5rem 0;
   }
 }
 
+.rodape {
+  text-align: center;
+  padding: 1rem;
+  background-color: #e9e9e9;
+  margin-top: 2rem;
+}
