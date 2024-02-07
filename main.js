@@ -4,7 +4,6 @@ document.addEventListener("DOMContentLoaded", function () {
   const dataFinalInput = document.getElementById("dataFinal");
   const pesquisarButton = document.getElementById("pesquisar");
   // Seletores para os KPIs de cada filial e do grupo
-  // Seletores para os KPIs de cada filial e do grupo
   const kpis = {
     1: {
       receberPago: document.getElementById("receberPagoFilial1"),
@@ -15,6 +14,8 @@ document.addEventListener("DOMContentLoaded", function () {
       compras: document.getElementById("valorComprasFilial1"),
       saldoPago: document.getElementById("saldoPagoFilial1"),
       saldoTitulo: document.getElementById("saldoTituloFilial1"),
+      comprasxvendas: document.getElementById("comprasxvendasFilial1"),
+      vlmeta: document.getElementById("vlmetaFilial1"),
     },
     2: {
       receberPago: document.getElementById("receberPagoFilial2"),
@@ -25,6 +26,8 @@ document.addEventListener("DOMContentLoaded", function () {
       compras: document.getElementById("valorComprasFilial2"),
       saldoPago: document.getElementById("saldoPagoFilial2"),
       saldoTitulo: document.getElementById("saldoTituloFilial2"),
+      comprasxvendas: document.getElementById("comprasxvendasFilial2"),
+      vlmeta: document.getElementById("vlmetaFilial2"),
     },
     3: {
       receberPago: document.getElementById("receberPagoFilial3"),
@@ -35,6 +38,8 @@ document.addEventListener("DOMContentLoaded", function () {
       compras: document.getElementById("valorComprasFilial3"),
       saldoPago: document.getElementById("saldoPagoFilial3"),
       saldoTitulo: document.getElementById("saldoTituloFilial3"),
+      comprasxvendas: document.getElementById("comprasxvendasFilial3"),
+      vlmeta: document.getElementById("vlmetaFilial3"),
     },
     brf1: {
       receberPago: document.getElementById("receberPagoBrf1"),
@@ -45,6 +50,8 @@ document.addEventListener("DOMContentLoaded", function () {
       compras: document.getElementById("valorComprasBrf1"),
       saldoPago: document.getElementById("saldoPagoBrf1"),
       saldoTitulo: document.getElementById("saldoTituloBrf1"),
+      comprasxvendas: document.getElementById("comprasxvendasBrf1"),
+      vlmeta: document.getElementById("vlmetaBrf1"),
     }
   };
 
@@ -62,6 +69,10 @@ let updateTimer; // Timer para atualização automática
     });
   }
   
+  // Adiciona uma função para converter decimal em porcentagem
+  function formatarPorcentagem(valor) {
+    return `${(valor * 100).toFixed(2)}%`; // Converte para porcentagem e formata com duas casas decimais
+  }
 
   // Função para validar datas
   function validarDatas(dataInicial, dataFinal) {
@@ -87,6 +98,24 @@ let updateTimer; // Timer para atualização automática
       elemento.style.color = 'black';
     }
   }
+
+  function definirCorPorcentagem(valorFormatado, elemento) {
+    // Converte o valor formatado em porcentagem de volta para um número
+    const valor = parseFloat(valorFormatado.replace('%', ''));
+    
+    // Define um limite para considerar se a porcentagem é positiva ou negativa
+    const limite = 0; // Exemplo: 0 significa que valores acima de 0% serão verdes, abaixo serão vermelhos
+  
+    if (valor > limite) {
+      elemento.style.color = 'green';
+    } else if (valor < limite) {
+      elemento.style.color = 'red';
+    } else {
+      elemento.style.color = 'black'; // ou qualquer outra cor para valores neutros
+    }
+  }
+
+  
   // Comunicação com a API
   // Função para buscar dados da API
   async function buscarDadosAPI(apiUrl) {
@@ -113,6 +142,7 @@ let updateTimer; // Timer para atualização automática
 
   // Processa KPIs de Contas a Receber/Pagar
   function processarKPIsContas(dados) {
+    // Reinicializa os totais do BRF1 a cada chamada da função
     let totaisBrf1 = {
       receberPago: 0,
       receberTitulo: 0,
@@ -121,11 +151,12 @@ let updateTimer; // Timer para atualização automática
       vendas: 0,
       compras: 0,
       saldoPago: 0,
-      saldoTitulo: 0
+      saldoTitulo: 0,
+      vlmeta: 0,
     };
 
     dados.forEach(dado => {
-      const { CODFILIAL, RECEBER_VALORPAGO, RECEBER_VALORTITULO, PAGAR_VALORPAGO, PAGAR_VALORTITULO, VLSAIDAS, VLENTRADAS, SALDO_VALORPAGO, SALDO_VALORTITULO } = dado;
+      const { CODFILIAL, RECEBER_VALORPAGO, RECEBER_VALORTITULO, PAGAR_VALORPAGO, PAGAR_VALORTITULO, VLSAIDAS, VLENTRADAS, SALDO_VALORPAGO, SALDO_VALORTITULO, VLMETA, COMPRASXVENDAS } = dado;
 
       // Acumula os valores para a filial BRF1
       totaisBrf1.receberPago += RECEBER_VALORPAGO;
@@ -136,6 +167,7 @@ let updateTimer; // Timer para atualização automática
       totaisBrf1.compras += VLENTRADAS;
       totaisBrf1.saldoPago += SALDO_VALORPAGO;
       totaisBrf1.saldoTitulo += SALDO_VALORTITULO;
+      totaisBrf1.vlmeta += VLMETA;
 
       // Atualiza os valores e cores para cada filial
       if (kpis.hasOwnProperty(CODFILIAL)) {
@@ -162,8 +194,21 @@ let updateTimer; // Timer para atualização automática
 
             kpis[CODFILIAL].saldoTitulo.textContent = formatarMoeda(SALDO_VALORTITULO);
             definirCorDoValor(kpis[CODFILIAL].saldoTitulo.textContent, kpis[CODFILIAL].saldoTitulo);
+
+            kpis[CODFILIAL].vlmeta.textContent = formatarMoeda(VLMETA);
+            definirCorDoValor(kpis[CODFILIAL].vlmeta.textContent, kpis[CODFILIAL].vlmeta);
+
+            kpis[CODFILIAL].comprasxvendas.textContent = formatarPorcentagem(COMPRASXVENDAS);
+            definirCorPorcentagem(kpis[CODFILIAL].comprasxvendas.textContent, kpis[CODFILIAL].comprasxvendas);
         }
   });
+
+  // Após processar todos os dados, calcule comprasxvendas para BRF1
+  if (totaisBrf1.vendas > 0) { // Garante que não haja divisão por zero
+    totaisBrf1.comprasxvendas = totaisBrf1.compras / totaisBrf1.vendas;
+  } else {
+    totaisBrf1.comprasxvendas = 0; // Define um valor padrão caso não haja vendas
+  }
 
   // Atualiza a interface para a filial BRF1
   kpis['brf1'].receberPago.textContent = formatarMoeda(totaisBrf1.receberPago);
@@ -189,6 +234,13 @@ let updateTimer; // Timer para atualização automática
 
   kpis['brf1'].saldoTitulo.textContent = formatarMoeda(totaisBrf1.saldoTitulo);
   definirCorDoValor(kpis['brf1'].saldoTitulo.textContent, kpis['brf1'].saldoTitulo);
+
+  kpis['brf1'].vlmeta.textContent = formatarMoeda(totaisBrf1.vlmeta);
+  definirCorDoValor(kpis['brf1'].vlmeta.textContent, kpis['brf1'].vlmeta);
+
+  kpis['brf1'].comprasxvendas.textContent = formatarPorcentagem(totaisBrf1.comprasxvendas);
+  definirCorPorcentagem(kpis['brf1'].comprasxvendas.textContent, kpis['brf1'].comprasxvendas);
+  
   }
 
   // Atualiza saldos dos bancos
