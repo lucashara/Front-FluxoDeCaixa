@@ -3,30 +3,110 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  /* font-family: 'Poppins', sans-serif; */
+  /* font-family: 'Roboto', sans-serif; */
+  /* font-family: 'Montserrat', sans-serif; */
 }
 
-body {
-  font-family: 'Arial', sans-serif;
+body { 
   background-color: #f4f4f4;
   color: #333;
   font-size: 16px; /* Base para o cálculo de rem */
 }
 
-.container {
-  max-width: 96rem;
+.container { 
   margin: 1rem auto;
   padding: 1rem;
 }
 
+.title-princi{
+  padding-left: 20px;  
+  font-family: 'Poppins', sans-serif;
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 1.5625rem;
+}
+
 h1, h2, h3 {
-  color: #0056b3;
+  color: #000;
+  padding-bottom: 10px;
+  padding-top: 10px;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.title-saldBan{
+  background-color: #729cc9;
+  padding: 10px;
+  text-align: center;
+  color: #fff;
+  border-radius: 8px; 
+  font-family: 'Poppins', sans-serif;
+  font-weight: 700;
+}
+
+ 
+.viewBan{ 
+  display: block;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 400; 
+  line-height: 45px;
+  padding: 25px !important;   
+  font-size: 18px;  
+}
+
+.item{
+  background-color: #ffffff;
+  border-radius: 0.5rem;
+  box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.5);
+  padding: 1rem;
+  height: 700px;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 400; 
+}
+
+h2{
+  background-color: #729cc9;
+  padding: 10px;
+  text-align: center;
+  color: #fff;
+  border-radius: 8px;
+  margin-bottom: 10px;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 700;
+}
+
+.titulos{
+  font-size: 18px;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 400;
+}
+
+.recPrev{
+  font-size: 18px;
+  padding-top: 10px;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 400;
+}
+
+.saldoBD{ 
+  padding: 1rem;
+  background-color: #e9e9e9; 
+  width: 1863px;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 700;
+  font-size: 1.5625rem;
+  text-transform: uppercase;
 }
 
 /* Layout principal com CSS Grid */
-.confGeral {
+.confGeral { 
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
   gap: 1rem;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 400;
 }
 
 /* Estilização das seções de KPIs */
@@ -35,7 +115,12 @@ h1, h2, h3 {
   border-radius: 0.5rem;
   box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.1);
   padding: 1rem;
+  height: 600px;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 400;
 }
+
+
 
 /* Estilização específica para o Saldo do Banco */
 .saldoBanco {
@@ -47,6 +132,8 @@ h1, h2, h3 {
   display: flex; /* Para alinhar os itens internos na horizontal */
   align-items: center;
   justify-content: space-between; /* Distribui o espaço entre os itens internamente */
+  font-family: 'Poppins', sans-serif;
+  font-weight: 400;
 }
 
 /* Estilos para filtros, botões e labels */
@@ -54,27 +141,38 @@ h1, h2, h3 {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 2rem;
+  margin-bottom: 1rem;
+  background-color: #e9e9e9;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 400;
 }
 
 .filtros label, .filtros input, .filtros button {
   margin: 0.5rem;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 400;
 }
 
 input[type="date"], .btn {
   padding: 0.5rem;
   border: 1px solid #0056b3;
   border-radius: 0.25rem;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 400;
 }
 
 .btn {
   background-color: #0056b3;
   color: white;
   cursor: pointer;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 400;
 }
 
 .btn:hover {
   background-color: #004494;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 400;
 }
 
 /* Responsividade e ajustes finais */
@@ -87,11 +185,91 @@ input[type="date"], .btn {
     width: 100%;
     margin: 0.5rem 0;
   }
+  .title-princi{
+    margin: 0;
+    padding: 0;
+    padding-left: -10px;
+    padding-top: 20px;
+    margin-bottom: 20px;
+    margin-right: 93px;
+  }
+
+  input[type="date"], .btn { 
+    width: 320px;
+    margin-left: 15px;
+    border: 1px solid #0056b3;
+    border-radius: 0.25rem;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 400;
+  }
+
+  .dataInit, .dataFim{
+    margin-left: 15px !important;
+    font-size: 1rem;
+    font-family: 'Poppins', sans-serif;
+  font-weight: 700;
+  text-transform: uppercase;
+   
+  }
+
+  .btn{
+    width: 320px !important;
+    margin-left: 15px !important;
+  }
 }
 
-.rodape {
+@media(max-width: 650px){
+
+.saldoBanco{
+  flex-direction: column;   
+}
+
+.title-princi{
+  background-color: #004494;
+    color: white;
+    padding: 10px;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    transition: top 0.3s ease-in-out;
+}
+ 
+.saldoBD{
+  width: 358px;
+  background-color: #004494; 
+    color: #fff;
+    padding: 10px;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 800;
+    transition: top 0.3s ease-in-out;
+ } 
+
+ .scroll-down {
+  top: -3600px; /* Ajuste o valor de acordo com a altura do seu menu */
+}
+
+.filtros{
+margin-top: 40px !important;
+}
+
+.viewBan{
+  margin-bottom: 20px;
+  padding-bottom: 80px;
+  height: 650px;
+}
+
+.title-saldBan{
+ display: flex;
+ justify-content: center;
+}
+ 
+.rodape{ 
+  margin-bottom: 15px;
   text-align: center;
-  padding: 1rem;
-  background-color: #e9e9e9;
-  margin-top: 2rem;
+}
 }
