@@ -4,6 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="brf1.ico" type="image/x-icon" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Poppins:wght@400;700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/style.css">
     <title>Saldo de Contas</title>
 </head>
@@ -11,13 +14,13 @@
   <div class="container">
     <!-- <h1>Saldo de Contas</h1> -->
     <div class="filtros">
-        <h1>Saldo de Contas</h1>
+        <h1 class="title-princi" id="menu1">Saldo de Contas</h1>
         <div class="dados">
-        <label for="dataInicial">Data Inicial:</label>
+        <label for="dataInicial" class="dataInit">Data Inicial:</label>
         <input type="date" id="dataInicial" />
          
        
-        <label for="dataFinal">Data Final:</label>
+        <label for="dataFinal" class="dataFim">Data Final:</label>
         <input type="date" id="dataFinal" />
         
         <button class="btn" id="pesquisar">Pesquisar</button> 
@@ -106,26 +109,26 @@
         <!-- Filial 1 -->
         <div class="filial" id="vendasFilial1">
             <h3>Farmaum PB</h3>
-            <div class="titulos">Total de Vendas: <span id="valorVendasFilial1"></span></div>
-            <div class="titulos">Meta de Vendas: <span id="vlmetaFilial1"></span></div>
+            <div class="titulos recPrev">Total de Vendas: <span id="valorVendasFilial1"></span></div>
+            <div class="titulos recPrev">Meta de Vendas: <span id="vlmetaFilial1"></span></div>
         </div>
         <!-- Filial 2 -->
         <div class="filial" id="vendasFilial2">
             <h3>Farmaum RN</h3>
-            <div class="titulos">Total de Vendas: <span id="valorVendasFilial2"></span></div>
-            <div class="titulos">Meta de Vendas: <span id="vlmetaFilial2"></span></div>
+            <div class="titulos recPrev">Total de Vendas: <span id="valorVendasFilial2"></span></div>
+            <div class="titulos recPrev">Meta de Vendas: <span id="vlmetaFilial2"></span></div>
         </div>
         <!-- Filial 3 -->
         <div class="filial" id="vendasFilial3">
             <h3>Brasil</h3>
-            <div class="titulos">Total de Vendas: <span id="valorVendasFilial3"></span></div>
-            <div class="titulos">Meta de Vendas: <span id="vlmetaFilial3"></span></div>
+            <div class="titulos recPrev">Total de Vendas: <span id="valorVendasFilial3"></span></div>
+            <div class="titulos recPrev">Meta de Vendas: <span id="vlmetaFilial3"></span></div>
         </div>
         <!-- BRF1 -->
         <div class="filial" id="vendasBrf1">
             <h3>BRF1</h3>
-            <div class="titulos">Total de Vendas: <span id="valorVendasBrf1"></span></div>
-            <div class="titulos">Meta de Vendas: <span id="vlmetaBrf1"></span></div>
+            <div class="titulos recPrev">Total de Vendas: <span id="valorVendasBrf1"></span></div>
+            <div class="titulos recPrev">Meta de Vendas: <span id="vlmetaBrf1"></span></div>
         </div>
     </div>
 
@@ -135,47 +138,47 @@
         <!-- Filial 1 -->
         <div class="filial" id="comprasFilial1">
             <h3>Farmaum PB</h3>
-            <div class="titulos">Total de Compras: <span id="valorComprasFilial1"></span></div>
-            <div class="titulos">Compras vs Vendas: <span id="comprasxvendasFilial1"></span></div>
+            <div class="titulos recPrev">Total de Compras: <span id="valorComprasFilial1"></span></div>
+            <div class="titulos recPrev">Compras vs Vendas: <span id="comprasxvendasFilial1"></span></div>
         </div>
         <!-- Filial 2 -->
         <div class="filial" id="comprasFilial2">
             <h3>Farmaum RN</h3>
-            <div class="titulos">Total de Compras: <span id="valorComprasFilial2"></span></div>
-            <div class="titulos">Compras vs Vendas: <span id="comprasxvendasFilial2"></span></div>
+            <div class="titulos recPrev">Total de Compras: <span id="valorComprasFilial2"></span></div>
+            <div class="titulos recPrev">Compras vs Vendas: <span id="comprasxvendasFilial2"></span></div>
         </div>
         <!-- Filial 3 -->
         <div class="filial" id="comprasFilial3">
             <h3>Brasil</h3>
-            <div class="titulos">Total de Compras: <span id="valorComprasFilial3"></span></div>
-            <div class="titulos">Compras vs Vendas: <span id="comprasxvendasFilial3"></span></div>
+            <div class="titulos recPrev">Total de Compras: <span id="valorComprasFilial3"></span></div>
+            <div class="titulos recPrev">Compras vs Vendas: <span id="comprasxvendasFilial3"></span></div>
         </div>
         <!-- BRF1 -->
         <div class="filial" id="comprasBrf1">
             <h3>BRF1</h3>
-            <div class="titulos">Total de Compras: <span id="valorComprasBrf1"></span></div>
-            <div class="titulos">Compras vs Vendas: <span id="comprasxvendasBrf1"></span></div>
+            <div class="titulos recPrev">Total de Compras: <span id="valorComprasBrf1"></span></div>
+            <div class="titulos recPrev">Compras vs Vendas: <span id="comprasxvendasBrf1"></span></div>
         </div>
     </div>
 
 
-    
+    <h4 class="saldoBD" id="menu2">Saldo do Banco</h4>
     <div class="saldoBanco">
-        <h2>Saldo do Banco</h2>
-        <div class="filial" id="saldoBancoFilial1">
-            <h3>Farmaum PB</h3>
+        <!-- <h2>Saldo do Banco</h2> -->
+        <div class="filial item viewBan" id="saldoBancoFilial1">
+            <h3 class="title-saldBan">Farmaum PB</h3>
             <div class="viewBan" id="saldoBancoFilial1Detalhes"></div>
         </div>
-        <div class="filial" id="saldoBancoFilial2">
-            <h3>Farmaum RN</h3>
+        <div class="filial item viewBan" id="saldoBancoFilial2">
+            <h3 class="title-saldBan">Farmaum RN</h3>
             <div class="viewBan" id="saldoBancoFilial2Detalhes"></div>
         </div>
-        <div class="filial" id="saldoBancoFilial3">
-            <h3>Brasil</h3>
+        <div class="filial item viewBan" id="saldoBancoFilial3">
+            <h3 class="title-saldBan">Brasil</h3>
             <div class="viewBan" id="saldoBancoFilial3Detalhes"></div>
         </div>
-        <div class="filial" id="saldoBancoBrf1">
-            <h3>BRF1</h3>
+        <div class="filial item viewBan" id="saldoBancoBrf1">
+            <h3 class="title-saldBan">BRF1</h3>
             <div class="viewBan" id="saldoBancoBrf1Detalhes"></div>
         </div>
     </div>
