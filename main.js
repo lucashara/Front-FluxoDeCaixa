@@ -344,3 +344,16 @@ let updateTimer; // Timer para atualização automática
 
   buscarAcumuladoMesAtual(); // Executa ao carregar a página
 });
+
+window.addEventListener('scroll', function() {
+  const menu1 = document.getElementById('menu1');
+  const menu2 = document.getElementById('menu2');
+
+  if (window.scrollY > 2691) {
+    menu1.classList.add('scroll-down');
+    menu2.classList.remove('scroll-down'); 
+  } else {
+    menu1.classList.remove('scroll-down');
+    menu2.classList.add('scroll-down');
+  }
+});
